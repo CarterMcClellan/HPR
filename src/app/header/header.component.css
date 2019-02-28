@@ -1,0 +1,31 @@
+.mat-tab-nav-bar, .mat-tab-link {
+  font-size: 15px;
+}
+
+/* color of subject underscore */
+::ng-deep .mat-ink-bar {
+  background-color:white !important;
+}
+
+::ng-deep .mat-tab-label-active {
+  color: white !important;
+}
+
+
+.fa-user-circle {
+  position:absolute;
+  top:10;
+  right:10px;
+  color: white; /* official wisconsin red https://teamcolorcodes.com/wisconsin-badgers-colors/ */
+}
+
+.static-header{
+  color:#C5050C;
+  font-size: 50px;
+  padding: 40px;
+}
+
+.non-static-header{
+  background-color:#C5050C;
+  color: white;
+}

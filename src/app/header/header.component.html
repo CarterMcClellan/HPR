@@ -1,0 +1,11 @@
+<mat-toolbar class="static-header">HPR</mat-toolbar>
+<mat-toolbar class="non-static-header">
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link  *ngFor="let link of navLinks" [routerLink]="link.link"
+                    routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+                    {{link.label}}
+    </a>
+  </nav>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
