@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-studies.component.css']
 })
 export class MyStudiesComponent implements OnInit {
+  /**
+  * this is just a placeholder variable
+  * until the backend is configured,
+  * @ignore
+  */
   past_studies = [
     { title: "Study Title", study: "Not Sure", description: "TBD", time: "TBD", approval: "Approved" },
     { title: "Study Title 2", study: "Not Sure", description: "TBD", time: "11-12", approval: "Not Approved" },
@@ -20,6 +25,12 @@ export class MyStudiesComponent implements OnInit {
     { title: "Study Title 2", study: "Not Sure", description: "TBD", time: "11-12", approval: "Not Approved" },
     { title: "Study Title 3", study: "The Study of Stuff", description: "Eating Frogs", time: "TBD", approval: "TBD" }
  ];
+ 
+/**
+  * this is just a placeholder variable
+  * until the backend is configured,
+  * @ignore
+  */
  curr_studies = [
   { title: "Study Title", study: "Not Sure", description: "TBD", time: "TBD", approval: "Approved" },
   { title: "Study Title 2", study: "Not Sure", description: "TBD", time: "11-12", approval: "Not Approved" },

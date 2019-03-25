@@ -9,7 +9,7 @@ export class StudiesComponent implements OnInit {
   /**
   * this is just a placeholder variable
   * until the backend is configured,
-  * ignore
+  * @ignore
   */
   studies = [
     { title: "Study Title", study: "Not Sure", description: "TBD", time: "TBD"},
@@ -44,6 +44,12 @@ export class StudiesComponent implements OnInit {
   time = "";
   constructor() { }
 
+/**
+  * Initialize user specific variables, note that this is all dependends on
+  * the authentication status of the user
+  *
+  *  @returns void
+  */
   ngOnInit() {
   }
 
