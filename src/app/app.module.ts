@@ -1,14 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { StudiesComponent } from './studies/studies.component';
-import { UserComponent } from './user/user.component';
-import { MyStudiesComponent } from './my-studies/my-studies.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
+// all of these forms will be used to process the registration and login process'
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+// all of these angular material components will be used stylize the front end
 import {MatTabsModule,
   MatTableModule,
   MatCardModule,
@@ -19,6 +16,17 @@ import {MatTabsModule,
   MatFormFieldModule,
   MatGridListModule,
   MatExpansionModule} from '@angular/material';
+
+// these are all the components which we have defined in our project ourselves
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { StudiesComponent } from './studies/studies.component';
+import { UserComponent } from './user/user.component';
+import { MyStudiesComponent } from './my-studies/my-studies.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+
+
 
 @NgModule({
   declarations: [
@@ -32,6 +40,9 @@ import {MatTabsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
     MatTabsModule,
     MatTableModule,
     MatCardModule,

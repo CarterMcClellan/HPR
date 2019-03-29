@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { idText } from 'typescript';
+
 
 @Component({
   selector: 'app-user',
@@ -19,52 +25,8 @@ import { Component, OnInit } from '@angular/core';
  * ```
  */
 export class UserComponent implements OnInit {
-  /**
-  * email should be set on initialization,
-  * should not be possible to have an email
-  * with a suffix other than @wisc.edu
-  */
-  email = "bob.schultz@wisc.edu";
 
-  /**
-  * password should correspond to each of
-  * the given user emails, should be longer
-  * than 8 characters in addition to symbols
-  * and numbers
-  */
-  password =  "frogs";
-
-  /**
-  * name can be either assigned in the sign up
-  * process or configured from the email address
-  */
-  name= "bob";
-
-  /**
-  * authentication status can either be a participant,
-  * researcher, or admin each with differing CRUD priveleges
-  */
-  authentication_status="";
-
-  /**
-  * languages serves as a key identifier for the study
-  * as certain research projects can require native
-  * or non-native speakers
-  */
-  language="";
-
-  /**
-  * user age optionally could be validated for spam, users
-  * entering illegal ages could be flagged as participants
-  */
-  age="";
-
-  /**
-   * again like language serves as a potential exclusionary
-   * factor with certain kinds of studies
-   */
-  school_year="";
-  constructor() { }
+  constructor(private http: HttpClient, private route: Router){}
 
   /**
   * Initialize user specific variables, note that this is all dependends on
@@ -73,13 +35,6 @@ export class UserComponent implements OnInit {
   *  @returns void
   */
   ngOnInit() {
-    this.email = ""
-    this.password = ""
-    this.name = ""
-    this.authentication_status = ""
-    this.language = ""
-    this.age = ""
-    this.school_year = ""
   }
 
   /**
@@ -88,6 +43,54 @@ export class UserComponent implements OnInit {
   */
   validateInput() {
     return '';
+  }
+
+  path = 'http://localhost:3000';
+  authPath = 'http://localhost:3000/auth';
+  messages: Message[] = []
+  users: Message[] = []
+  TOKEN_KEY = 'token'
+
+  onRegister(regData) {
+    this.http.post<any>(this.authPath + '/register', regData).subscribe(res =>{
+        console.log(res)
+        localStorage.setItem(this.TOKEN_KEY, res.token)
+        if(this.isAuthenticated){
+            this.route.navigateByUrl("/")
+        }else{
+            console.log("Registration Failed")
+        }
+    })
+  }
+
+  onLogin(loginData) {
+    this.http.post<any>(this.authPath + '/login', loginData).subscribe(res =>{
+        console.log(res);
+        localStorage.setItem(this.TOKEN_KEY, res.token)
+        if(this.isAuthenticated){
+            this.route.navigateByUrl("/")
+        }else{
+            console.log("Registration Failed")
+        }
+    })
+  }
+
+  getMessage(userId){
+    this.http.get<any>(this.path +'/posts/'+userId).subscribe(res =>{
+    this.messages = res;
+    })
+  }
+
+  get token(){
+    return localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  get isAuthenticated(){
+    return !!localStorage.getItem(this.TOKEN_KEY)
+  }
+
+  logout(){
+    localStorage.removeItem(this.TOKEN_KEY);
   }
 
 }
