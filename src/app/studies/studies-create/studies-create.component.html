@@ -1,0 +1,57 @@
+<!-- title: string, study: string, description: string, time: string -->
+<mat-card>
+  <form (submit)="onAddStudies(studyForm)" #studyForm="ngForm">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="title"
+        ngModel
+        required
+        minlength="3"
+        placeholder="Study Title"
+        #title="ngModel">
+      <mat-error *ngIf="title.invalid">Please enter a study title.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="study"
+        ngModel
+        required
+        minlength="3"
+        placeholder="Study"
+        #study="ngModel">
+      <mat-error *ngIf="study.invalid">Please enter something (akshat still hasnt told me what he wants here)</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="description"
+        ngModel
+        required
+        minlength="3"
+        placeholder="Study Description"
+        #description="ngModel">
+      <mat-error *ngIf="description.invalid">Please enter a study descrition.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="time"
+        ngModel
+        required
+        minlength="3"
+        placeholder="Study Time"
+        #time="ngModel">
+      <mat-error *ngIf="time.invalid">Please enter a time.</mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit">Save Study</button>
+  </form>
+</mat-card>

@@ -20,6 +20,8 @@ import {MatTabsModule,
 // these are all the components which we have defined in our project ourselves
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import { StudiesListComponent } from './studies/studies-list/studies-list.component';
+import { StudiesCreateComponent } from './studies/studies-create/studies-create.component';
 import { StudiesComponent } from './studies/studies.component';
 import { UserComponent } from './user/user.component';
 import { MyStudiesComponent } from './my-studies/my-studies.component';
@@ -33,6 +35,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     HeaderComponent,
     StudiesComponent,
+    StudiesListComponent,
+    StudiesCreateComponent,
     UserComponent,
     MyStudiesComponent
   ],
