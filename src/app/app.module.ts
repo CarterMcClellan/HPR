@@ -38,7 +38,7 @@ import { AppRoutingModule } from './app-routing.module';
     StudiesListComponent,
     StudiesCreateComponent,
     UserComponent,
-    MyStudiesComponent
+    MyStudiesComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +58,9 @@ import { AppRoutingModule } from './app-routing.module';
     MatGridListModule,
     MatInputModule,
     MatExpansionModule
+  ],
+  exports: [
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
