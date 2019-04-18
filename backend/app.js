@@ -124,13 +124,13 @@ app.get('/my-studies', (req, res, next) => {
 });
 
 app.get('/user', (req, res, next) => {
-  Users.find()
+  User.find()
     .then(documents => {
       console.log(documents);
 
       return res.status(200).json({
         message: 'Here is the user data',
-        users: documents
+        user: documents
       });
     });
 });
@@ -138,7 +138,7 @@ app.get('/user', (req, res, next) => {
 app.post('/signup', (req, res, next) => {
   bcrypt.hash(req.body.password, 10)
     .then(hash => {
-      const users = new User({
+      const user = new User({
         email: req.body.email,
         password: hash,
         authentication: req.body.authentication
@@ -147,49 +147,57 @@ app.post('/signup', (req, res, next) => {
       // write the data to mongo using the
       // mongoose save method https://mongoosejs.com/docs/models.html
       // automatically written to the "Studies" collection
-      users.save()
+      user.save()
         .then(result => {
           res.status(201).json({
             message: 'User can been created'
           })
         })
-      console.log(users);
+      console.log(user);
     });
 })
 
 app.post('/login', (req, res, next) => {
+  let fetchedUser;
   User.findOne({ email: req.body.email }).then(user => {
     if (!user) {
       return res.status(401).json({
-        message: "Auth (1) failed"
+        message: "Auth failed"
       });
     }
+    fetchedUser = user
     console.log("db-query  succesful");
     console.log(user.password);
     console.log(req.body.password);
     return bcrypt.compare(req.body.password, user.password);
   })
+
   .then(result => {
+
     console.log("comparison succesful");
     if (!result){
       return res.status(401).json({
         message: "Auth (2) failed"
       });
     }
+
     // TODO fix JWT shit
-    /*
+    console.log("right beore JWT");
+
     const token = jwt.sign(
-      {email: user.email, userId: user._id},
-      'secret_this_should_be_longer',
+      {email: fetchedUser.email, userID: fetchedUser._id},
+    'sdfgasdgdsafgasdfsadfasdf',
       {expiresIn: "1h"}
-    ); */
+    );
+    console.log(token);
+
     res.status(200).json({
-      message: "yay fuck jwt"
-    });
+        token: token
+      });
   })
   .catch(err => {
     return res.status(401).json({
-      message: "Auth (3) failed"
+      message: err.message
     });
   });
 });

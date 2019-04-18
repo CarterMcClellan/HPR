@@ -25,7 +25,7 @@ export class UsersService {
     console.log(user_obj);
     this.http.post<{message: string}>('http://localhost:3000/login', user_obj)
       .subscribe((responseData) => {
-        console.log(responseData.message);
+        console.log(responseData);
       });
   }
 

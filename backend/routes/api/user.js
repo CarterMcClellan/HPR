@@ -28,8 +28,8 @@ router.post("/register", (req, res) => {
     		if (user) {
       			return res.status(400).json({ email: "Email already exists"});
 		}
-		else {	
- 
+		else {
+
 			const newUser = new User({
 				name: req.body.name,
 				email: req.body.email,
@@ -95,7 +95,7 @@ router.post("/login", (req, res) => {
 						success: true,
 						token: "Bearer " + token
 						});
-					}	
+					}
 				);
 	  		}
 	  		else {
