@@ -21,18 +21,21 @@ import {MatTabsModule,
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { StudiesListComponent } from './studies/studies-list/studies-list.component';
+import { DemoComponent } from './studies/calendar/calendar.component'
 import { StudiesCreateComponent } from './studies/studies-create/studies-create.component';
 import { StudiesComponent } from './studies/studies.component';
 import { UserComponent } from './user/user.component';
 import { MyStudiesComponent } from './my-studies/my-studies.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    DemoComponent,
     HeaderComponent,
     StudiesComponent,
     StudiesListComponent,
@@ -41,6 +44,12 @@ import { AppRoutingModule } from './app-routing.module';
     MyStudiesComponent,
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -66,3 +75,4 @@ import { AppRoutingModule } from './app-routing.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

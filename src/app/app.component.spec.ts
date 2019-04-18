@@ -31,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // all of these forms will be used to process the registration and login process'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { DemoComponent } from './studies/calendar/calendar.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -59,6 +60,7 @@ describe('AppComponent', () => {
         HeaderComponent,
         StudiesComponent,
         StudiesListComponent,
+        DemoComponent,
         StudiesCreateComponent,
         UserComponent,
         MyStudiesComponent,
