@@ -6,6 +6,7 @@ import { StudiesComponent } from './studies/studies.component';
 import { MyStudiesComponent } from './my-studies/my-studies.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { DemoComponent } from './studies/calendar/calendar.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/studies', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'mystudies', component:  MyStudiesComponent},
   { path: 'login', component:  LoginComponent},
   { path: 'signup', component:  SignupComponent},
+  { path: 'schedule', component: DemoComponent  },
 ];
 
 export const appRouting = RouterModule.forRoot(routes);
