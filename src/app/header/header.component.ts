@@ -38,10 +38,14 @@ export class HeaderComponent {
             link: './mystudies',
             index: 1
         },{
-          label: 'Home',
-          link: './user',
+          label: 'Login',
+          link: './login',
           index: 2
-        },
+      },{
+        label: 'Register',
+        link: './signup',
+        index: 3
+      },
 
     ];
 }

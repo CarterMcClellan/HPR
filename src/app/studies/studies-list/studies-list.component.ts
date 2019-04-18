@@ -9,6 +9,7 @@ import { StudiesService } from "../studies.service";
   templateUrl: './studies-list.component.html',
   styleUrls: ['./studies-list.component.css']
 })
+
 export class StudiesListComponent implements OnInit {
   studies: Studies[] = [];
   private postsSub: Subscription;
