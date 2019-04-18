@@ -40,8 +40,19 @@ export class StudiesService {
 
   // this functionality is only relevant for the researcher view as they are the only class which is
   // given the privelege to add participants to the study
-  addStudies(title: string, study: string, description: string, time: string) {
-    const study_obj: Studies = { id: null , title: title , study: study, description: description, time: time, approval: null};
+  addStudies(title: string, study: string, description: string, time: string, creator: string) {
+    const study_obj: Studies = { id: null , title: title , study: study, description: description, time: time, approval: null, creator: creator};
+    this.http.post<{message: string}>('http://localhost:3000/studies', study_obj)
+      .subscribe((responseData) => {
+        console.log(responseData.message);
+        this.studies.push(study_obj);
+        this.studiesUpdated.next([...this.studies]);
+      });
+  }
+
+  // WIP
+  addParticipant(title: string, study: string, description: string, time: string){
+    const study_obj: Studies = { id: null , title: title , study: study, description: description, time: time, approval: null, creator: ""};
     this.http.post<{message: string}>('http://localhost:3000/studies', study_obj)
       .subscribe((responseData) => {
         console.log(responseData.message);

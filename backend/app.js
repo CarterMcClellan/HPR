@@ -11,6 +11,9 @@ const jwt = require("jsonwebtoken");
 
 const app = express();
 
+// CUSTOM MIDDLEWARE
+const checkAuth = require("./middleware/check-auth");
+
 // pass the json parsing module as a functor for express to use on all requests
 // if for some reason we want to limit the routeds being processed by body parser
 // we can pass these as well
@@ -18,7 +21,6 @@ app.use(bodyParser.json());
 
 // CORS FUNCTIONALITY
 // what is cors? https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-//
 app.use((req, res, next) => {
   // this means that no matter where the resources of the app are being sent too
   // those resources are given access
@@ -28,14 +30,15 @@ app.use((req, res, next) => {
   // have the following headers
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
 
   // finally we control which http words may be allowed to send requests
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, PATCH, DELETE, OPTIONS"
-  )
+  );
+
   next();
 })
 
@@ -60,14 +63,20 @@ mongoose
 // handles all write requests to the database
 // from the url localhost 3000/studies
 // TODO error handling
+// note the addition of the check authentication
+// function, to protect the creation of routes
+// for all non authenticated users
 app.post("/studies", (req, res, next) => {
   const studies = new Studies({
     title: req.body.title,
     study: req.body.study,
     description: req.body.description,
     time: req.body.time,
-    approval: req.body.approval
+    approval: req.body.approval,
+    creator: req.body.creator,
+    participants: req.body.participants
   });
+
   // write the data to mongo using the
   // mongoose save method https://mongoosejs.com/docs/models.html
   // automatically written to the "Studies" collection
@@ -107,32 +116,15 @@ app.get('/studies', (req, res, next) => {
 // (or whatever port we have elected to use)
 // TODO error handling
 app.get('/my-studies', (req, res, next) => {
-  Studies.find()
-    .then(documents => {
-      console.log(documents);
-
-      // 200 status code used to indicate success
-      // this task is asynchronous therefore it MUST
-      // be in the then block or we will try and
-      // return something we do not have yet
-      return res.status(200).json({
-        message: 'Curr studies fetched succesfully from the backend',
-        curr_studies: documents,
-        past_studies: documents
-      });
-    });
-});
-
-app.get('/user', (req, res, next) => {
-  Users.find()
-    .then(documents => {
-      console.log(documents);
-
-      return res.status(200).json({
-        message: 'Here is the user data',
-        users: documents
-      });
-    });
+    Studies.findOne({ creator: req.body.creator })
+      .then(documents => {
+        console.log(documents)
+        return res.status(200).json({
+          message: 'Curr studies fetched succesfully from the backend',
+          curr_studies: documents,
+          past_studies: documents
+        });
+      })
 });
 
 app.post('/signup', (req, res, next) => {
@@ -150,7 +142,7 @@ app.post('/signup', (req, res, next) => {
       users.save()
         .then(result => {
           res.status(201).json({
-            message: 'User can been created'
+            message: 'User has been created'
           })
         })
       console.log(users);
@@ -158,15 +150,14 @@ app.post('/signup', (req, res, next) => {
 })
 
 app.post('/login', (req, res, next) => {
+  let fetchedUser;
   User.findOne({ email: req.body.email }).then(user => {
     if (!user) {
       return res.status(401).json({
         message: "Auth (1) failed"
       });
     }
-    console.log("db-query  succesful");
-    console.log(user.password);
-    console.log(req.body.password);
+    fetchedUser = user;
     return bcrypt.compare(req.body.password, user.password);
   })
   .then(result => {
@@ -176,15 +167,14 @@ app.post('/login', (req, res, next) => {
         message: "Auth (2) failed"
       });
     }
-    // TODO fix JWT shit
-    /*
     const token = jwt.sign(
-      {email: user.email, userId: user._id},
+      {email: fetchedUser.email, userId: fetchedUser._id},
       'secret_this_should_be_longer',
       {expiresIn: "1h"}
-    ); */
+    );
     res.status(200).json({
-      message: "yay fuck jwt"
+      token: token,
+      status: fetchedUser.authentication
     });
   })
   .catch(err => {

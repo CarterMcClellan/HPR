@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { MyStudies } from "./my-studies.model";
 import { MyStudiesService } from "./my-studies.service";
 
+import { UsersService } from "../user/user.service";
+
 @Component({
   selector: 'app-my-studies',
   templateUrl: './my-studies.component.html',
@@ -13,10 +15,14 @@ import { MyStudiesService } from "./my-studies.service";
 export class MyStudiesComponent implements OnInit {
   curr_studies: MyStudies[] = [];
   past_studies: MyStudies[] = [];
+  email: string;
+
   private currStudiesSub: Subscription;
   private pastStudiesSub: Subscription;
+  private status: string;
 
-  constructor(public myStudiesService: MyStudiesService) {}
+
+  constructor(public myStudiesService: MyStudiesService, public userService: UsersService) {}
 
   ngOnInit() {
     this.myStudiesService.getPastStudies();
@@ -30,5 +36,13 @@ export class MyStudiesComponent implements OnInit {
       .subscribe((curr_studies : MyStudies[]) => {
         this.curr_studies = curr_studies;
       });
+
+    try {
+      this.email = this.userService.getEmail();
+      this.status = this.userService.getStatus();
+    } catch (err){
+      console.log(err);
+    }
+
   }
 }

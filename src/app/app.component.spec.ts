@@ -7,6 +7,8 @@ import { StudiesListComponent } from './studies/studies-list/studies-list.compon
 import { StudiesCreateComponent } from './studies/studies-create/studies-create.component';
 import { MyStudiesComponent } from './my-studies/my-studies.component';
 import { UserComponent } from './user/user.component';
+import { LoginComponent } from './user/login/login.component';
+import { SignupComponent } from './user/signup/signup.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -32,6 +34,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DemoComponent } from './studies/calendar/calendar.component';
 
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -52,17 +57,23 @@ describe('AppComponent', () => {
         MatFormFieldModule,
         MatGridListModule,
         MatInputModule,
-        MatExpansionModule
+        MatExpansionModule,
+        CalendarModule.forRoot({
+          provide: DateAdapter,
+          useFactory: adapterFactory
+        })
       ],
       declarations: [
         AppComponent,
+        DemoComponent,
         HeaderComponent,
         StudiesComponent,
         StudiesListComponent,
-        DemoComponent,
         StudiesCreateComponent,
         UserComponent,
         MyStudiesComponent,
+        LoginComponent,
+        SignupComponent
       ],
       providers: []
     }).compileComponents();

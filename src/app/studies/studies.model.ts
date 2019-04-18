@@ -28,5 +28,7 @@ export interface Studies {
   */
   time: string,
 
-  approval: string
+  approval: string,
+
+  creator: string
 }

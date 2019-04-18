@@ -11,6 +11,7 @@ import { NgForm } from "@angular/forms";
 
 export class SignupComponent{
   constructor(public usersService: UsersService) {}
+  private status:string;
 
   onRegister(form: NgForm){
     if (form.invalid) {
@@ -18,7 +19,7 @@ export class SignupComponent{
     }
     console.log(form.value);
     // title: string, study: string, description: string, time: string
-    this.usersService.addUsers(form.value.email, form.value.password, "no-authentication");
+    this.usersService.addUsers(form.value.email, form.value.password, "participant");
     form.resetForm();
   }
 }

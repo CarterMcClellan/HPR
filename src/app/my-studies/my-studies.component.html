@@ -1,5 +1,5 @@
 <mat-toolbar>Current Studies</mat-toolbar>
-<ng-container *ngIf="curr_studies">
+<ng-container *ngIf="curr_studies && email">
     <mat-accordion>
       <mat-expansion-panel *ngFor="let study of curr_studies">
           <mat-expansion-panel-header>
@@ -15,7 +15,7 @@
   </ng-container>
 
 <mat-toolbar>Past Studies</mat-toolbar>
-<ng-container *ngIf="past_studies">
+<ng-container *ngIf="past_studies && email">
     <mat-accordion>
       <mat-expansion-panel *ngFor="let study of past_studies">
           <mat-expansion-panel-header>

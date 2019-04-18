@@ -10,15 +10,15 @@ import { NgForm } from "@angular/forms";
 
 export class LoginComponent{
   constructor(public usersService: UsersService) {}
+  private status:string
 
   onLogin(form: NgForm){
-    console.log(form);
     if (form.invalid) {
       return;
     }
-    console.log(form);
     // title: string, study: string, description: string, time: string
     this.usersService.login(form.value.email, form.value.password, "no-authentication");
+    this.status = this.usersService.getStatus();
     form.resetForm();
   }
 }

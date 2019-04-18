@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,  HTTP_INTERCEPTORS} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // all of these forms will be used to process the registration and login process'
@@ -31,6 +31,7 @@ import { StudiesComponent } from './studies/studies.component';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { UserInterceptor } from './user/user.interceptor';
 
 import { MyStudiesComponent } from './my-studies/my-studies.component';
 
@@ -80,7 +81,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
   exports: [
     MatToolbarModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: UserInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
