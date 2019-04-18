@@ -41,4 +41,17 @@ export class UsersService {
         this.usersUpdated.next([...this.users]);
       });
   }
+
+  addUsersadmin(email, password, authentication) {
+    const user_obj: User = { id: null , email: email, password: password, authentication: authentication};
+    console.log(user_obj);
+    this.http.post<{message: string}>('http://localhost:3000/signupadmin', user_obj)
+      .subscribe((responseData) => {
+        console.log(responseData.message);
+        this.users.push(user_obj);
+        this.usersUpdated.next([...this.users]);
+      });
+  }
+
+
 }

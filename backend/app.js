@@ -103,6 +103,49 @@ app.get('/studies', (req, res, next) => {
 
 });
 
+app.post("/createstudyresearcher", (req, res, next) => {
+  const studies = new Studies({
+    title: req.body.title,
+    study: req.body.study,
+    description: req.body.description,
+    time: req.body.time,
+    approval: req.body.approval
+  });
+  // write the data to mongo using the
+  // mongoose save method https://mongoosejs.com/docs/models.html
+  // automatically written to the "Studies" collection
+  studies.save();
+  console.log(studies);
+
+  // to ensure no timeout we return a response (201 means success + resource created)
+  return res.status(201).json({
+    message: 'Study has been added'
+  });
+});
+
+// handles all read requests targeting localhost 3000/studies
+// (or whatever port we have elected to use)
+// TODO error handling
+app.get('/createstudyresearcher', (req, res, next) => {
+  // using mongoose this will simply return all of the in the
+  // studies collection
+  Studies.find()
+    .then(documents => {
+      console.log(documents);
+
+      // 200 status code used to indicate success
+      // this task is asynchronous therefore it MUST
+      // be in the then block or we will try and
+      // return something we do not have yet
+      return res.status(200).json({
+        message: 'Studies fetched succesfully from the backend',
+        studies: documents
+      });
+    });
+
+
+});
+
 // handles all requests targeting localhost 3000/studies
 // (or whatever port we have elected to use)
 // TODO error handling
@@ -168,6 +211,7 @@ app.post('/login', (req, res, next) => {
     console.log(user.password);
     console.log(req.body.password);
     return bcrypt.compare(req.body.password, user.password);
+    //Demo encrypted password
   })
   .then(result => {
     console.log("comparison succesful");
@@ -184,7 +228,7 @@ app.post('/login', (req, res, next) => {
       {expiresIn: "1h"}
     ); */
     res.status(200).json({
-      message: "yay fuck jwt"
+      message: "yay jwt"
     });
   })
   .catch(err => {

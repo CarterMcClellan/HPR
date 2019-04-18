@@ -31,6 +31,8 @@ import { StudiesComponent } from './studies/studies.component';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { SignupadminComponent } from './user/signup/signupadmin.component';
+import { CreateStudyResearcherComponent } from './studies/createstudyresearcher/createstudyresearcher.component';
 
 import { MyStudiesComponent } from './my-studies/my-studies.component';
 
@@ -50,7 +52,9 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     UserComponent,
     MyStudiesComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    SignupadminComponent,
+    CreateStudyResearcherComponent
   ],
   imports: [
     BrowserModule,

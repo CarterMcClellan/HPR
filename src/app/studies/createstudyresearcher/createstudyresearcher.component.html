@@ -1,0 +1,73 @@
+<!-- title: string, study: string, description: string, time: string -->
+
+<mat-toolbar > Hello, Researcher! </mat-toolbar>
+<h3> Please create a study: </h3>
+<mat-card>
+        <form (submit)="onAddStudies(studyForm)" #studyForm="ngForm">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              name="title"
+              ngModel
+              required
+              minlength="3"
+              placeholder="Study Title"
+              #title="ngModel">
+            <mat-error *ngIf="title.invalid">Please enter a study title.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              name="study"
+              ngModel
+              required
+              minlength="3"
+              placeholder="Study"
+              #study="ngModel">
+            <mat-error *ngIf="study.invalid">Please enter something (akshat still hasnt told me what he wants here)</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              name="description"
+              ngModel
+              required
+              minlength="3"
+              placeholder="Study Description"
+              #description="ngModel">
+            <mat-error *ngIf="description.invalid">Please enter a study descrition.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              name="time"
+              ngModel
+              required
+              minlength="3"
+              placeholder="Study Time"
+              #time="ngModel">
+            <mat-error *ngIf="time.invalid">Please enter a time.</mat-error>
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="accent"
+            type="submit">Save Study</button>
+        </form>
+      </mat-card>
+      <ng-container *ngIf="studies">
+            <mat-card *ngFor="let study of studies">
+              <h2 class="title"> {{ study.title }} </h2>
+              <mat-divider></mat-divider>
+              <h4> Study  </h4> <p> {{ study.study }}  </p>
+              <mat-divider></mat-divider>
+              <h4> Description </h4> <p>{{ study.description}} </p>
+              <mat-divider></mat-divider>
+              <h4> Study Time </h4><p> {{ study.time}} </p>
+              <mat-divider></mat-divider>
+            </mat-card>
+        </ng-container>
+        

@@ -3,6 +3,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { StudiesComponent } from './studies/studies.component';
+import { CreateStudyResearcherComponent } from './studies/createstudyresearcher/createstudyresearcher.component';
 import { StudiesListComponent } from './studies/studies-list/studies-list.component';
 import { StudiesCreateComponent } from './studies/studies-create/studies-create.component';
 import { MyStudiesComponent } from './my-studies/my-studies.component';
@@ -58,6 +59,7 @@ describe('AppComponent', () => {
         AppComponent,
         HeaderComponent,
         StudiesComponent,
+        CreateStudyResearcherComponent,
         StudiesListComponent,
         DemoComponent,
         StudiesCreateComponent,
