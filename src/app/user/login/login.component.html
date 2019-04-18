@@ -1,0 +1,19 @@
+<mat-card>
+  <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
+        <mat-form-field class="example-full-width">
+          <!-- ngModel #emailInput gives access to the underlying object being controlled by angular -->
+          <input matInput name="email" type="email" placeholder="Email" ngModel #emailInput="ngModel" required email>
+          <!-- by registering the component with ngModel we are then able to check and see if in the input is valid -->
+          <!-- the "validation" on the "required" and the "email" validators, both of which are provided by angular
+              and check to see if something is present and if angular deems it to be an email -->
+          <mat-error *ngIf="emailInput.invalid"> Please enter a valid email </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <!-- Follow the same logic as described above except substitute email for password -->
+          <input matInput name="password" type="password" placeholder="Password" ngModel #passInput="ngModel" required>
+          <!-- again same logic -->
+          <mat-error *ngIf="passInput.invalid"> Please enter a valid password </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="accent" type="submit">Login</button>
+  </form>
+</mat-card>

@@ -9,7 +9,6 @@ import { MyStudiesComponent } from './my-studies/my-studies.component';
 import { UserComponent } from './user/user.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { AppRoutingModule } from './app-routing.module';
 
 import { RouterTestingModule } from '@angular/router/testing';
 

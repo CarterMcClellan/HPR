@@ -7,28 +7,38 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 
-export class StudiesService {
-  private user: User[] = [];
-  private studiesUpdated = new Subject<User[]>();
+export class UsersService {
+  private users: User[] = [];
+  private usersUpdated = new Subject<User[]>();
 
   // inject private http var of type HttpClient
   constructor(private http: HttpClient) {}
 
-  onRegister(email: string, password: string, authentication: string) {
-    const userObj : User = {id: null, email: email, password : password, authentication : authentication};
-    this.http.post<{message: string}>('http://localhost:3000/user', userObj)
-      .subscribe( (res) => {
-        console.log(res)
-    });
-  };
+  getUsersUpdateListener() {
+    return this.usersUpdated.asObservable();
+  }
 
-  onLogin(email: string, password: string) {
-    const userObj : User = {id: null, email: email, password : password, authentication: null};
-    this.http.post<{message: string}>('http://localhost:3000/user', userObj)
-      .subscribe( (res) => {
-        console.log(res)
-    });
-  };
+  // this functionality is only relevant for the researcher view as they are the only class which is
+  // given the privelege to add participants to the study
+  login(email, password, authentication) {
+    const user_obj: User = { id: null , email: email, password: password, authentication: authentication};
+    console.log(user_obj);
+    this.http.post<{message: string}>('http://localhost:3000/login', user_obj)
+      .subscribe((responseData) => {
+        console.log(responseData.message);
+      });
+  }
 
-
+  // this functionality is only relevant for the researcher view as they are the only class which is
+  // given the privelege to add participants to the study
+  addUsers(email, password, authentication) {
+    const user_obj: User = { id: null , email: email, password: password, authentication: authentication};
+    console.log(user_obj);
+    this.http.post<{message: string}>('http://localhost:3000/signup', user_obj)
+      .subscribe((responseData) => {
+        console.log(responseData.message);
+        this.users.push(user_obj);
+        this.usersUpdated.next([...this.users]);
+      });
+  }
 }

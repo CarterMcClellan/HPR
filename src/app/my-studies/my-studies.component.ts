@@ -9,6 +9,7 @@ import { MyStudiesService } from "./my-studies.service";
   templateUrl: './my-studies.component.html',
   styleUrls: ['./my-studies.component.css']
 })
+
 export class MyStudiesComponent implements OnInit {
   curr_studies: MyStudies[] = [];
   past_studies: MyStudies[] = [];
