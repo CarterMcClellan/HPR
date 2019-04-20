@@ -1,12 +1,32 @@
 <mat-toolbar class="static-header">HPR</mat-toolbar>
 <mat-toolbar class="non-static-header">
   <nav mat-tab-nav-bar>
-    <a mat-tab-link  *ngFor="let link of navLinks" [routerLink]="link.link"
-                    routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
-                    {{link.label}}
-    </a>
-  </nav>
+    <ng-container *ngIf="userStatus=='admin'">
+        <a mat-tab-link routerLink="/signup" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">Add Researcher</a>
+        <button mat-button (click)="onLogout()"> Log Out</button>
+        <button mat-button > Account Status: {{ userStatus }}           User Email: {{ email }} </button>
+    </ng-container>
 
+    <ng-container *ngIf="userStatus=='researcher'">
+        <button mat-button (click)="onLogout()"> Log Out</button>
+        <a mat-tab-link routerLink="/mystudies" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">My Studies</a>
+        <a mat-tab-link routerLink="/studies" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">Create Studies</a>
+        <button mat-button > Account Status: {{ userStatus }}           User Email: {{ email }} </button>
+    </ng-container>
+
+    <ng-container *ngIf="userStatus=='participant'">
+        <button mat-button (click)="onLogout()"> Log Out</button>
+        <a mat-tab-link routerLink="/mystudies" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">My Studies</a>
+        <a mat-tab-link routerLink="/studies" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">Current Studies</a>
+        <button mat-button > Account Status: {{ userStatus }}           User Email: {{ email }} </button>
+    </ng-container>
+
+    <ng-container *ngIf="!userStatus">
+        <a mat-tab-link routerLink="/studies" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">Current Studies</a>
+        <a mat-tab-link routerLink="/login" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">Login</a>
+        <a mat-tab-link routerLink="/signup" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">Register</a>
+    </ng-container>
+  </nav>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

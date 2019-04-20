@@ -1,31 +1,29 @@
 <mat-toolbar>Current Studies</mat-toolbar>
 <ng-container *ngIf="curr_studies && email">
-    <mat-accordion>
-      <mat-expansion-panel *ngFor="let study of curr_studies">
-          <mat-expansion-panel-header>
-            <h2> {{ study.title }} </h2>
-            <p *ngIf="study.approval === 'Approved'"> <i class="fa fa-check" style="color:green"></i></p>
-            <p *ngIf="study.approval === 'Not Approved'"> <i class="fa fa-times" style="color:red"></i></p>
-          </mat-expansion-panel-header>
-            <h4> Study  </h4> <p> {{ study.study }}  </p>
-            <h4> Description </h4> <p>{{ study.description}} </p>
-            <h4> Study Time </h4><p> {{ study.time}} </p>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </ng-container>
+    <div *ngFor="let study of curr_studies">
+        <ng-template *ngIf="study.creator == email; then match else not"></ng-template>
+        <ng-template #match>
+                <h2> {{ study.title }} </h2>
+                <p *ngIf="study.approval === 'Approved'"> <i class="fa fa-check" style="color:green"></i></p>
+                <p *ngIf="study.approval === 'Not Approved'"> <i class="fa fa-times" style="color:red"></i></p>
+                <h4> Study  </h4> <p> {{ study.study }}  </p>
+                <h4> Description </h4> <p>{{ study.description}} </p>
+        </ng-template>
+        <ng-template #not> <h2> You don't have any current studies </h2></ng-template>
+    </div>
+</ng-container>
 
 <mat-toolbar>Past Studies</mat-toolbar>
 <ng-container *ngIf="past_studies && email">
-    <mat-accordion>
-      <mat-expansion-panel *ngFor="let study of past_studies">
-          <mat-expansion-panel-header>
-            <h2> {{ study.title }} </h2>
-            <p *ngIf="study.approval === 'Approved'"> <i class="fa fa-check" style="color:green"></i></p>
-            <p *ngIf="study.approval === 'Not Approved'"> <i class="fa fa-times" style="color:red"></i></p>
-          </mat-expansion-panel-header>
-            <h4> Study  </h4> <p> {{ study.study }}  </p>
-            <h4> Description </h4> <p>{{ study.description}} </p>
-            <h4> Study Time </h4><p> {{ study.time}} </p>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </ng-container>
+      <div *ngFor="let study of past_studies">
+          <ng-template *ngIf="study.creator == email; then match else not"></ng-template>
+          <ng-template #match>
+                  <h2> {{ study.title }} </h2>
+                  <p *ngIf="study.approval === 'Approved'"> <i class="fa fa-check" style="color:green"></i></p>
+                  <p *ngIf="study.approval === 'Not Approved'"> <i class="fa fa-times" style="color:red"></i></p>
+                  <h4> Study  </h4> <p> {{ study.study }}  </p>
+                  <h4> Description </h4> <p>{{ study.description}} </p>
+          </ng-template>
+          <ng-template #not> <h2> You don't have any past studies </h2></ng-template>
+      </div>
+</ng-container>

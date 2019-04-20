@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StudiesService } from './studies.service';
+import { UsersService } from '../user/user.service';
 
 
 @Component({
@@ -7,12 +9,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./studies.component.css']
 })
 export class StudiesComponent implements OnInit {
+  email: string;
+  status: string;
 
-  constructor() {}
+  constructor(public studiesService: StudiesService, public userService: UsersService) {}
 
   ngOnInit() {
-  }
-
-  ngOnDestroy() {
+    try {
+      this.email = this.userService.getEmail();
+      this.status = this.userService.getStatus();
+    } catch (err){
+      console.log(err);
+    }
   }
 }

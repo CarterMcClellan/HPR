@@ -28,5 +28,7 @@ export interface MyStudies {
   */
   time: string,
 
-  approval: string
+  approval: string,
+
+  creator: string
 }

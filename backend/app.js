@@ -66,22 +66,22 @@ mongoose
 // note the addition of the check authentication
 // function, to protect the creation of routes
 // for all non authenticated users
-app.post("/studies", (req, res, next) => {
+app.post("/studies", checkAuth, (req, res, next) => {
   const studies = new Studies({
     title: req.body.title,
     study: req.body.study,
     description: req.body.description,
     time: req.body.time,
     approval: req.body.approval,
-    creator: req.body.creator,
+    creator: req.userData.email,
     participants: req.body.participants
   });
 
   // write the data to mongo using the
   // mongoose save method https://mongoosejs.com/docs/models.html
   // automatically written to the "Studies" collection
-  studies.save();
-  console.log(studies);
+   studies.save();
+  // console.log(studies);
 
   // to ensure no timeout we return a response (201 means success + resource created)
   return res.status(201).json({
@@ -97,7 +97,6 @@ app.get('/studies', (req, res, next) => {
   // studies collection
   Studies.find()
     .then(documents => {
-      console.log(documents);
 
       // 200 status code used to indicate success
       // this task is asynchronous therefore it MUST
@@ -116,9 +115,8 @@ app.get('/studies', (req, res, next) => {
 // (or whatever port we have elected to use)
 // TODO error handling
 app.get('/my-studies', (req, res, next) => {
-    Studies.findOne({ creator: req.body.creator })
+    Studies.find()
       .then(documents => {
-        console.log(documents)
         return res.status(200).json({
           message: 'Curr studies fetched succesfully from the backend',
           curr_studies: documents,
@@ -145,7 +143,6 @@ app.post('/signup', (req, res, next) => {
             message: 'User has been created'
           })
         })
-      console.log(users);
     });
 })
 
@@ -161,7 +158,6 @@ app.post('/login', (req, res, next) => {
     return bcrypt.compare(req.body.password, user.password);
   })
   .then(result => {
-    console.log("comparison succesful");
     if (!result){
       return res.status(401).json({
         message: "Auth (2) failed"
@@ -174,7 +170,8 @@ app.post('/login', (req, res, next) => {
     );
     res.status(200).json({
       token: token,
-      status: fetchedUser.authentication
+      status: fetchedUser.authentication,
+      email: fetchedUser.email
     });
   })
   .catch(err => {

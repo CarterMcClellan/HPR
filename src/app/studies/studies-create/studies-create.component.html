@@ -1,5 +1,4 @@
 <!-- title: string, study: string, description: string, time: string -->
-<ng-container *ngIf="status=='researcher'">
   <mat-card>
     <form (submit)="onAddStudies(studyForm)" #studyForm="ngForm">
       <mat-form-field>
@@ -50,23 +49,9 @@
           #time="ngModel">
         <mat-error *ngIf="time.invalid">Please enter a time.</mat-error>
       </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          type="text"
-          name="username"
-          ngModel
-          required
-          minlength="3"
-          placeholder="Username"
-          #username="ngModel">
-        <mat-error *ngIf="username.invalid">Please enter your username.</mat-error>
-      </mat-form-field>
       <button
         mat-raised-button
         color="accent"
         type="submit">Save Study</button>
     </form>
   </mat-card>
-
-</ng-container>

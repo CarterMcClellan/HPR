@@ -1,6 +1,7 @@
-<!-- once the authentication logic is setup this will be all conditioned-->
-<mat-toolbar >Create Studies</mat-toolbar>
-<app-studies-create></app-studies-create>
+<ng-container *ngIf="status=='researcher'">
+    <mat-toolbar >Create Studies</mat-toolbar>
+    <app-studies-create></app-studies-create>
+</ng-container>
 
 <mat-toolbar >Currently Available Studies</mat-toolbar>
 <app-studies-list></app-studies-list>

@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import {UsersService} from '../user/user.service';
+
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +10,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 
 })
-export class HeaderComponent {
+
+export class HeaderComponent implements OnInit, OnDestroy {
+  userStatus = "";
+  email = "";
+  private userStatusSub: Subscription;
   /**
    * title of router for reference later
    */
@@ -27,7 +34,7 @@ export class HeaderComponent {
    * sets all of the router links created
    * in the app-routing.module.ts
    */
-  constructor(private router: Router) {
+  constructor(public userService: UsersService, private router: Router) {
     this.navLinks = [
       {
             label: 'Studies',
@@ -55,9 +62,23 @@ export class HeaderComponent {
   *
   *  @returns void
   */
-ngOnInit(): void {
+ngOnInit(){
   this.router.events.subscribe((res) => {
       this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(tab => tab.link === '.' + this.router.url));
   });
+  this.userStatusSub = this.userService.getUserStatus()
+  .subscribe( response => {
+    this.userStatus = response.status;
+    this.email = response.email;
+  })
 }
+
+ngOnDestroy(){
+  this.userStatusSub.unsubscribe();
+}
+
+onLogout() {
+  this.userService.logout();
+}
+
 }

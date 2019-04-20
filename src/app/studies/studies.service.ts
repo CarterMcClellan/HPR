@@ -29,6 +29,7 @@ export class StudiesService {
   getStudies() {
     this.http.get<{message: string, studies: Studies[]}>('http://localhost:3000/studies')
       .subscribe( (studyData) => {
+        console.log(studyData);
         this.studies = studyData.studies; // store locally
         this.studiesUpdated.next([...this.studies]); // copy it so it can't be modified in this subscription
       });
@@ -40,8 +41,8 @@ export class StudiesService {
 
   // this functionality is only relevant for the researcher view as they are the only class which is
   // given the privelege to add participants to the study
-  addStudies(title: string, study: string, description: string, time: string, creator: string) {
-    const study_obj: Studies = { id: null , title: title , study: study, description: description, time: time, approval: null, creator: creator};
+  addStudies(title: string, study: string, description: string, time: string) {
+    const study_obj: Studies = { id: null , title: title , study: study, description: description, time: time, approval: null, creator: null};
     this.http.post<{message: string}>('http://localhost:3000/studies', study_obj)
       .subscribe((responseData) => {
         console.log(responseData.message);

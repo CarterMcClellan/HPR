@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const User = require("./user");
+
 // (creator) mongoose is being used to handle identifying who created what object
 //    ref in this case is a field which specifies which schema we use to hold some
 //    of the object information

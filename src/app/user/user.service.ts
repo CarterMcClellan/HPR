@@ -8,23 +8,25 @@ import { Subject } from 'rxjs';
 })
 
 export class UsersService {
-  private users: User[] = [];
   private token: string;
   private status: string;
   private email: string;
-  private usersUpdated = new Subject<User[]>();
+
+  private userStatus = new Subject<{token: string, status: string, email: string}>();
 
   // inject private http var of type HttpClient
   constructor(private http: HttpClient) {}
 
-  getUsersUpdateListener() {
-    return this.usersUpdated.asObservable();
+  // whether the user is authenticated (True or False)
+  getUserStatus() {
+    return this.userStatus.asObservable();
   }
 
   getToken() {
     return this.token;
   }
 
+  // whether the user is a admin, researcher or participant
   getStatus() {
     return this.status;
   }
@@ -50,13 +52,20 @@ export class UsersService {
     const user_obj: User = { id: null , email: email, password: password, authentication: authentication};
     this.email = email;
     console.log(user_obj);
-    this.http.post<{token: string, status: string}>('http://localhost:3000/login', user_obj)
+    this.http.post<{token: string, status: string, email: string}>('http://localhost:3000/login', user_obj)
       .subscribe((responseData) => {
-        var temp = responseData;
-        console.log(responseData);
+        const temp = responseData;
         this.token = temp.token;
         this.status = temp.status;
+        this.userStatus.next(temp);
       });
+  }
+
+  logout(){
+    this.token = null;
+    this.status = null;
+    this.email = null;
+    this.userStatus.next({token: "", status: "", email: ""});
   }
 
 
