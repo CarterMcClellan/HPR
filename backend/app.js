@@ -5,6 +5,7 @@ const bodyParser = require('body-parser'); // parsing all post requests
 
 var User = require('./models/user.js');
 var Studies = require('./models/studies.js');
+var Schedule = require('./models/schedule');
 
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -69,12 +70,11 @@ mongoose
 app.post("/studies", checkAuth, (req, res, next) => {
   const studies = new Studies({
     title: req.body.title,
-    study: req.body.study,
     description: req.body.description,
-    time: req.body.time,
     approval: req.body.approval,
     creator: req.userData.email,
-    participants: req.body.participants
+    start_time: req.body.start_time,
+    end_time: req.body.end_time
   });
 
   // write the data to mongo using the
@@ -109,6 +109,34 @@ app.get('/studies', (req, res, next) => {
     });
 
 
+});
+
+// handles all read requests targeting localhost 3000/studies
+// (or whatever port we have elected to use)
+// TODO error handling
+app.post('/oneStudy', (req, res, next) => {
+  Studies.findOne({ title: req.body.title }).then( study => {
+    return res.status(200).json({
+      message: 'Succesfullly Found Study',
+      studies: study
+    })
+  })
+});
+
+// write all of the user schedules to the backend
+app.post('/schedule', (req, res, next) => {
+  console.log(req.body);
+  const schedule = new Schedule({
+    openings: req.body.openings,
+    study_title: req.body.study_title,
+    user_email: req.body.user_email
+  });
+  console.log(schedule);
+  // schedule.save();
+  // to ensure no timeout we return a response (201 means success + resource created)
+  return res.status(201).json({
+    message: 'Schedule has been added'
+  });
 });
 
 // handles all requests targeting localhost 3000/studies

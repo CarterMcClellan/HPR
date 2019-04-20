@@ -13,18 +13,7 @@
           #title="ngModel">
         <mat-error *ngIf="title.invalid">Please enter a study title.</mat-error>
       </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          type="text"
-          name="study"
-          ngModel
-          required
-          minlength="3"
-          placeholder="Study"
-          #study="ngModel">
-        <mat-error *ngIf="study.invalid">Please enter something (akshat still hasnt told me what he wants here)</mat-error>
-      </mat-form-field>
+
       <mat-form-field>
         <input
           matInput
@@ -37,18 +26,37 @@
           #description="ngModel">
         <mat-error *ngIf="description.invalid">Please enter a study descrition.</mat-error>
       </mat-form-field>
+
+      <!-- Start Time-->
       <mat-form-field>
         <input
           matInput
-          type="text"
-          name="time"
           ngModel
           required
-          minlength="3"
-          placeholder="Study Time"
-          #time="ngModel">
-        <mat-error *ngIf="time.invalid">Please enter a time.</mat-error>
+          name="start_time"
+          #start_time="ngModel"
+          [matDatepicker]="start_picker"
+          placeholder="Choose a start time">
+        <mat-datepicker-toggle matSuffix [for]="start_picker"></mat-datepicker-toggle>
+        <mat-datepicker #start_picker></mat-datepicker>
+        <mat-error *ngIf="start_time.invalid"></mat-error>
       </mat-form-field>
+
+      <!-- End Time-->
+      <mat-form-field>
+        <input
+          matInput
+          ngModel
+          required
+          name="end_time"
+          #end_time="ngModel"
+          [matDatepicker]="end_picker"
+          placeholder="Choose a end time">
+        <mat-datepicker-toggle matSuffix [for]="end_picker"></mat-datepicker-toggle>
+        <mat-datepicker #end_picker></mat-datepicker>
+        <mat-error *ngIf="start_time.invalid"></mat-error>
+      </mat-form-field>
+
       <button
         mat-raised-button
         color="accent"

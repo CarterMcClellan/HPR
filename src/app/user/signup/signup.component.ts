@@ -11,30 +11,21 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./signup.component.css']
 })
 
-export class SignupComponent implements OnInit, OnDestroy{
+export class SignupComponent {
   constructor(public userService: UsersService) {}
   private userStatusSub: Subscription;
   userStatus = "";
 
-  ngOnInit(){
-    this.userStatusSub = this.userService.getUserStatus()
-    .subscribe( response => {
-      this.userStatus = response.status;
-    })
-  }
-
-  ngOnDestroy(){
-    this.userStatusSub.unsubscribe();
-  }
-
-  onRegister(form: NgForm){
+  onRegister(form: NgForm) {
     if (form.invalid) {
       return;
     }
-    if (this.userStatus === '') {
-      this.userService.addUsers(form.value.email, form.value.password, "participant");
-    } else if(this.userStatus === 'admin'){
+    this.userStatus = this.userService.getStatus();
+    console.log(this.userStatus);
+    if (this.userStatus === 'admin') {
       this.userService.addUsers(form.value.email, form.value.password, "researcher");
+    } else {
+      this.userService.addUsers(form.value.email, form.value.password, "participant");
     }
 
     form.resetForm();

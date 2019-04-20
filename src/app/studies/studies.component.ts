@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { StudiesService } from './studies.service';
 import { UsersService } from '../user/user.service';
 
+import { Subscription } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-studies',
@@ -11,15 +14,17 @@ import { UsersService } from '../user/user.service';
 export class StudiesComponent implements OnInit {
   email: string;
   status: string;
+  private userStatusSub: Subscription;
 
   constructor(public studiesService: StudiesService, public userService: UsersService) {}
 
   ngOnInit() {
-    try {
-      this.email = this.userService.getEmail();
-      this.status = this.userService.getStatus();
-    } catch (err){
-      console.log(err);
-    }
+    this.status = this.userService.getStatus();
+    this.userStatusSub = this.userService.getUserStatus()
+    .subscribe( response => {
+      this.status = response.status;
+      this.email = response.email;
+    });
   }
+
 }

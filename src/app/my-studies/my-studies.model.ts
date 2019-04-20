@@ -10,25 +10,18 @@ export interface MyStudies {
   */
   title: string,
 
-   /**
-  * not sure what this is akshat threw
-  * it in his mock up
-  */
-  study: string,
 
   /**
   * overall description of the study
   */
   description: string,
 
-  /**
-  * listed timeslots/ researcher availbility
-  * this can be set as a property or chosen via
-  * the calendar application
-  */
-  time: string,
-
   approval: string,
+
+  start_time: string,
+
+  end_time: string,
 
   creator: string
 }
+

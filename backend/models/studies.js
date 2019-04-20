@@ -5,12 +5,11 @@ const mongoose = require("mongoose");
 //    of the object information
 const studySchema = mongoose.Schema({
   title: { type: String, required: true },
-  study: { type: String, required: true },
   description: { type: String, required: true },
-  time: { type: String, required: true },
+  start_time: { type: String, required: true },
+  end_time: { type: String, required: true },
   approval: {type: String, require: true},
-  creator: { type: String, required: true },
-  participants: { type: String, required: false}
+  creator: { type: String, required: true }
 });
 
 
