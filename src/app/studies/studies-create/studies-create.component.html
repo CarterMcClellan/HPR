@@ -49,6 +49,37 @@
           #time="ngModel">
         <mat-error *ngIf="time.invalid">Please enter a time.</mat-error>
       </mat-form-field>
+
+      <!-- Start Time-->
+      <mat-form-field>
+        <input
+          matInput
+          ngModel
+          required
+          name="start_time"
+          #start_time="ngModel"
+          [matDatepicker]="start_picker"
+          placeholder="Choose a start time">
+        <mat-datepicker-toggle matSuffix [for]="start_picker"></mat-datepicker-toggle>
+        <mat-datepicker #start_picker></mat-datepicker>
+        <mat-error *ngIf="start_time.invalid"></mat-error>
+      </mat-form-field>
+
+      <!-- End Time-->
+      <mat-form-field>
+        <input
+          matInput
+          ngModel
+          required
+          name="end_time"
+          #end_time="ngModel"
+          [matDatepicker]="end_picker"
+          placeholder="Choose a end time">
+        <mat-datepicker-toggle matSuffix [for]="end_picker"></mat-datepicker-toggle>
+        <mat-datepicker #end_picker></mat-datepicker>
+        <mat-error *ngIf="start_time.invalid"></mat-error>
+      </mat-form-field>
+
       <button
         mat-raised-button
         color="accent"

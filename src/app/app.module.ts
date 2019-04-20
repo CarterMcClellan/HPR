@@ -16,7 +16,10 @@ import {MatTabsModule,
   MatInputModule,
   MatFormFieldModule,
   MatGridListModule,
-  MatExpansionModule} from '@angular/material';
+  MatExpansionModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatCheckboxModule } from '@angular/material';
 
 // these are all the components which we have defined in our project ourselves
 import { AppComponent } from './app.component';
@@ -24,7 +27,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
 import { StudiesListComponent } from './studies/studies-list/studies-list.component';
-import { DemoComponent } from './studies/calendar/calendar.component'
 import { StudiesCreateComponent } from './studies/studies-create/studies-create.component';
 import { StudiesComponent } from './studies/studies.component';
 
@@ -38,12 +40,12 @@ import { MyStudiesComponent } from './my-studies/my-studies.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { SchedulerComponent } from './scheduler/scheduler.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoComponent,
     HeaderComponent,
     StudiesComponent,
     StudiesListComponent,
@@ -51,15 +53,12 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     UserComponent,
     MyStudiesComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    SchedulerComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory
-    }),
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -76,7 +75,10 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     MatFormFieldModule,
     MatGridListModule,
     MatInputModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule
   ],
   exports: [
     MatToolbarModule

@@ -1,0 +1,13 @@
+
+<form [formGroup]="interestFormGroup" (ngSubmit)="submit()">
+    <mat-grid-list [cols]="delta">
+        <div *ngFor="let interest of timeSeries; let i = index" >
+          <mat-grid-tile>
+              <mat-checkbox class="example-margin"
+              (change)="onChange($event)" [value]="interest">{{interest.text}}</mat-checkbox>
+          </mat-grid-tile>
+
+        </div>
+    </mat-grid-list>
+    <button mat-raised-button color="accent">Submit</button>
+</form>

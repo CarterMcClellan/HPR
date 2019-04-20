@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 
 import { StudiesService } from "../studies.service";
-import { UsersService } from "../../user/user.service";
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+
 
 @Component({
   selector: 'app-studies-create',
@@ -24,8 +25,9 @@ export class StudiesCreateComponent {
     if (form.invalid) {
       return;
     }
+    console.log(form.value);
     // title: string, study: string, description: string, time: string
-    this.studiesService.addStudies(form.value.title, form.value.study, form.value.description, form.value.time);
+    // this.studiesService.addStudies(form.value.title, form.value.study, form.value.description, form.value.time);
     form.resetForm();
   }
 }
