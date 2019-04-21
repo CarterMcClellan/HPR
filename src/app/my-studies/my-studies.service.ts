@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
 import { MyStudies } from './my-studies.model';
+import { PartStudies } from '../picker/part-studies.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,17 +21,17 @@ import { MyStudies } from './my-studies.model';
 export class MyStudiesService {
   private curr_studies: MyStudies[] = [];
   private past_studies: MyStudies[] = [];
+  private curr_part_studies: PartStudies[] = [];
   private pastStudiesUpdated = new Subject<MyStudies[]>();
   private currStudiesUpdated = new Subject<MyStudies[]>();
+  private currPartStudiesUpdated = new Subject<PartStudies[]>();
 
 
   // inject private http var of type HttpClient
   constructor(private http: HttpClient) {}
 
   // send http request to the backend
-  // (this is using the angular http client module)
-  // see: https://angular.io/api/common/http/HttpClientModule
-  // TODO: add error handling, use more dynamic solution for localhost
+  // this should only be used for researchers
   getPastStudies() {
     this.http.get<{message: string, curr_studies: MyStudies[], past_studies: MyStudies[]}>('http://localhost:3000/my-studies')
       .subscribe( (studyData) => {
@@ -39,11 +40,23 @@ export class MyStudiesService {
       });
   }
 
+  // send http request to the backend
+  // this should only be used for researchers
   getCurrStudies() {
     this.http.get<{message: string, curr_studies: MyStudies[], past_studies: MyStudies[]}>('http://localhost:3000/my-studies')
     .subscribe( (studyData) => {
       this.curr_studies = studyData.curr_studies; // store locally
       this.currStudiesUpdated.next([...this.curr_studies]); // copy it so it can't be modified in this subscription
+    });
+  }
+
+  // send http request to the backend
+  // this should only be used for participants
+  getPartStudies(){
+    this.http.get<{message: string, curr_studies: PartStudies[], past_studies: MyStudies[]}>('http://localhost:3000/partStudies')
+    .subscribe( (studyData) => {
+      this.curr_part_studies = studyData.curr_studies; // store locally
+      this.currPartStudiesUpdated.next([...this.curr_part_studies]); // copy it so it can't be modified in this subscription
     });
   }
 
@@ -53,5 +66,9 @@ export class MyStudiesService {
 
   getCurrStudiesUpdateListener() {
     return this.currStudiesUpdated.asObservable();
+  }
+
+  getCurrPartStudiesUpdateListener() {
+    return this.currPartStudiesUpdated.asObservable();
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../user/user.service'
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { PickerService } from './picker.service';
@@ -19,7 +20,11 @@ export class PickerComponent implements OnInit {
 
   schedules: Scheduler[];
 
-  constructor(public userService: UsersService,
+  interestFormGroup : FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    public userService: UsersService,
     private router: Router,
     private route: ActivatedRoute,
     private pickerService: PickerService) {}
@@ -33,11 +38,33 @@ export class PickerComponent implements OnInit {
       this.studyTitle = params['study'] || "";
     });
     this.pickerService.getSchedulesFromDB(this.studyTitle)
-      .subscribe(schedule => {
-        console.log(schedule);
-        // this.schedules = schedule.schedules;
-        // console.log(this.schedules);
+      .subscribe(schedules => {
+        this.schedules = schedules.schedules;
+
+        this.interestFormGroup = this.formBuilder.group({
+          interests: this.formBuilder.array([])
+        });
       });
+  }
+
+  onChange(event) {
+    const interests = <FormArray>this.interestFormGroup.get('interests') as FormArray;
+
+    if(event.checked) {
+      interests.push(new FormControl(event.source.value))
+    } else {
+      const i = interests.controls.findIndex(x => x.value === event.source.value);
+      interests.removeAt(i);
+    }
+  }
+
+  submit() {
+    const openings = [];
+    for(var i=0; i < this.interestFormGroup.value.interests.length; i++){
+      const val = "|"  + this.interestFormGroup.value.interests[i].user_email + "|" + this.interestFormGroup.value.interests[i].openings;
+      openings.push(val);
+    }
+    this.pickerService.writeStudyToDB(openings, this.studyTitle);
   }
 
 }
