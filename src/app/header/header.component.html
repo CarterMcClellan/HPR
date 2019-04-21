@@ -1,30 +1,33 @@
-<mat-toolbar class="static-header">HPR</mat-toolbar>
+<mat-toolbar class="static-header">
+    HCI LAB - STUDY PARTICIPANT RECRUITMENT
+</mat-toolbar>
+
 <mat-toolbar class="non-static-header">
   <nav mat-tab-nav-bar>
     <ng-container *ngIf="userStatus=='admin'">
-        <a mat-tab-link routerLink="/signup" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">Add Researcher</a>
+        <a mat-tab-link routerLink="/signup" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">ADD RESEARCHER</a>
         <button mat-button (click)="onLogout()"> Log Out</button>
         <button mat-button > Account Status: {{ userStatus }}           User Email: {{ email }} </button>
     </ng-container>
 
     <ng-container *ngIf="userStatus=='researcher'">
         <button mat-button (click)="onLogout()"> Log Out</button>
-        <a mat-tab-link routerLink="/mystudies" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">My Studies</a>
-        <a mat-tab-link routerLink="/studies" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">Create Studies</a>
+        <a mat-tab-link routerLink="/mystudies" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">MY STUDIES</a>
+        <a mat-tab-link routerLink="/studies" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">MY STUDIES</a>
         <button mat-button > Account Status: {{ userStatus }}           User Email: {{ email }} </button>
     </ng-container>
 
     <ng-container *ngIf="userStatus=='participant'">
         <button mat-button (click)="onLogout()"> Log Out</button>
-        <a mat-tab-link routerLink="/mystudies" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">My Studies</a>
-        <a mat-tab-link routerLink="/studies" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">Current Studies</a>
+        <a mat-tab-link routerLink="/mystudies" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">MY STUDIES</a>
+        <a mat-tab-link routerLink="/studies" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">CURRENT STUDIES</a>
         <button mat-button > Account Status: {{ userStatus }}           User Email: {{ email }} </button>
     </ng-container>
 
     <ng-container *ngIf="!userStatus">
-        <a mat-tab-link routerLink="/studies" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">Current Studies</a>
-        <a mat-tab-link routerLink="/login" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">Login</a>
-        <a mat-tab-link routerLink="/signup" routerLinkActive #rla="routerLinkActive" style="color: #FFFF">Register</a>
+        <a mat-tab-link routerLink="/studies" routerLinkActive #rla="routerLinkActive" >CURRENT STUDIES</a>
+        <a mat-tab-link routerLink="/login" routerLinkActive #rla="routerLinkActive" >Login</a>
+        <a mat-tab-link routerLink="/signup" routerLinkActive #rla="routerLinkActive" >Register</a>
     </ng-container>
   </nav>
 </mat-toolbar>

@@ -4,14 +4,17 @@
 
 /* color of subject underscore */
 ::ng-deep .mat-ink-bar {
-  background-color:white !important;
+  background-color: #c5030c !important;
 }
 
-::ng-deep .mat-tab-label-active {
+/* ::ng-deep .mat-tab-label-active {
   color: white !important;
+} */
+
+::ng-deep .mat-tab-link  {
+  color: #ffffff !important;
+  background-color: #c5030c;
 }
-
-
 .fa-user-circle {
   position:absolute;
   top:10;
@@ -20,12 +23,14 @@
 }
 
 .static-header{
-  color:#C5050C; /* official wisconsin red https://teamcolorcodes.com/wisconsin-badgers-colors/ */
-  font-size: 50px;
+  color: #c5030c; /* official wisconsin red https://teamcolorcodes.com/wisconsin-badgers-colors/ */
+  font-size: 32px;
   padding: 40px;
+  font-weight: bold;
+  font-family: Helvetica;
 }
 
 .non-static-header{
-  background-color:#C5050C;
+  background-color: #c5030c;
   color: white;
 }
