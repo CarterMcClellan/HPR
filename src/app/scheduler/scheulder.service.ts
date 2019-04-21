@@ -18,9 +18,20 @@ export class SchedulerService {
     const study_obj: Studies = { id: null , title: studyTitle , description: null, start_time: null, end_time: null, approval: null};
     return this.http.post<{message: string, studies: Studies}>('http://localhost:3000/oneStudy', study_obj);
   }
+/*
+  writeScheduleToDB(openings: string[], study_title: string, user_email: string){
+    // const schedule_obj: Scheduler = {id : null, openings: openings, study_title: study_title, user_email: user_email};
+    const schedule_obj: Scheduler = {id : null, study_title: study_title, user_email: user_email};
+    console.log(schedule_obj);
+    return this.http.post<{message: string}>('http://localhost:3000/tempTest', schedule_obj);
+  }*/
 
-  writeScheuldeToDB(openings: FormGroup, study_title: String, user_email: String){
-    const schedule_obj : Scheduler = {id : null, openings: openings, study_title: study_title, user_email: user_email};
-    return this.http.post<{message: string}>('http://localhost:3000/schedule', schedule_obj);
+  writeScheduleToDB(openings: string[], studyTitle: string, userEmail: string){
+    const scheduleObj: Scheduler = { id: null, openings: openings, study_title: studyTitle, user_email: userEmail};
+    return this.http.post<{message: string}>('http://localhost:3000/scheduler', scheduleObj)
+      .subscribe((responseData) => {
+        console.log(responseData.message);
+      });
+
   }
 }

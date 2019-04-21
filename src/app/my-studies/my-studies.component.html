@@ -9,6 +9,12 @@
           <h4> Description </h4> <p>{{ study.description}} </p>
           <mat-divider></mat-divider>
           <h4> Study Time </h4><p> From {{ study.start_time }} to {{ study.end_time }}</p>
+
+          <ng-container *ngIf="userStatus == 'researcher'">
+              <button mat-raised-button color="accent" (click)="checkView(study.title)"> Pick Particpants</button>
+              <mat-divider></mat-divider>
+          </ng-container>
+
         </ng-template>
     </div>
 </ng-container>

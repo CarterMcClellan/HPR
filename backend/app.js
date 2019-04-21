@@ -123,20 +123,31 @@ app.post('/oneStudy', (req, res, next) => {
   })
 });
 
+
 // write all of the user schedules to the backend
-app.post('/schedule', (req, res, next) => {
-  console.log(req.body);
+app.post('/scheduler', (req, res, next) => {
   const schedule = new Schedule({
     openings: req.body.openings,
     study_title: req.body.study_title,
     user_email: req.body.user_email
   });
-  console.log(schedule);
-  // schedule.save();
+  schedule.save();
+
   // to ensure no timeout we return a response (201 means success + resource created)
   return res.status(201).json({
     message: 'Schedule has been added'
   });
+
+});
+
+app.post('/allSchedule', (req, res, next) => {
+  console.log(req.body.title);
+  Schedule.findOne({ title : req.body.title }).then( schedules => {
+    return res.status(200).json({
+      message: 'Succesfullly Found Schedule',
+      schedule: schedules
+    })
+  })
 });
 
 // handles all requests targeting localhost 3000/studies

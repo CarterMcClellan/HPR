@@ -6,6 +6,8 @@ import { MyStudiesService } from "./my-studies.service";
 
 import { UsersService } from "../user/user.service";
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-my-studies',
   templateUrl: './my-studies.component.html',
@@ -25,10 +27,11 @@ export class MyStudiesComponent implements OnInit {
   private pastStudiesSub: Subscription;
 
 
-  constructor(public myStudiesService: MyStudiesService, public userService: UsersService) {}
+  constructor(public myStudiesService: MyStudiesService, public userService: UsersService, private router: Router) {}
 
   ngOnInit() {
     this.email = this.userService.getEmail();
+    this.userStatus = this.userService.getStatus();
     this.userStatusSub = this.userService.getUserStatus()
       .subscribe(response => {
         this.email = this.userService.getEmail();
@@ -46,5 +49,10 @@ export class MyStudiesComponent implements OnInit {
       .subscribe((curr_study : MyStudies[]) => {
         this.curr_studies = curr_study;
       });
+  }
+
+  checkView(studyTitle) {
+    this.userStatus = this.userService.getStatus();
+    this.router.navigate(['/picker'], {queryParams: {study: studyTitle}});
   }
 }
