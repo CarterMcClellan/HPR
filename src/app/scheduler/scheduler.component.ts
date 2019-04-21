@@ -21,7 +21,7 @@ export interface Tile {
 export class SchedulerComponent implements OnInit {
   oneStudy: Studies;
   timeSeries: Tile[];
-  studyTitle : String;
+  studyTitle : string;
   delta: number;
   email: string;
 
@@ -43,7 +43,6 @@ export class SchedulerComponent implements OnInit {
       // Defaults to 0 if no query param provided.
       this.studyTitle = params['study'] || "";
     });
-
     this.schedulerService.getStudyFromDB(this.studyTitle)
       .subscribe(oneStudy => {
         this.oneStudy = oneStudy.studies;
@@ -75,9 +74,10 @@ export class SchedulerComponent implements OnInit {
   }
 
   generateTimeseries(delta, interval) {
+    console.log(delta);
     var tiles = [];
     for(var j=0; j < 7; j+=interval){
-      for(var i=0; i < delta; i++){
+      for(var i=1; i < delta+1; i++){
         tiles.push({cols: 1, rows: 1, text: "Day " + i.toString() + " : " + "hour " + j.toString() });
       }
     }
@@ -96,6 +96,12 @@ export class SchedulerComponent implements OnInit {
   }
 
   submit() {
-    this.schedulerService.writeScheuldeToDB(this.interestFormGroup.value, this.studyTitle, this.email);
+    const all_days = [];
+
+    for(var i=0; i < this.interestFormGroup.value.interests.length; i++){
+      all_days.push(this.interestFormGroup.value.interests[i].text);
+    }
+
+    this.schedulerService.writeScheduleToDB(all_days, this.studyTitle, this.email);
   }
 }

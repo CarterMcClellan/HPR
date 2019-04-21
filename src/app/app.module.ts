@@ -41,6 +41,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { SchedulerComponent } from './scheduler/scheduler.component';
+import { PickerComponent } from './picker/picker.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
     MyStudiesComponent,
     LoginComponent,
     SignupComponent,
-    SchedulerComponent
+    SchedulerComponent,
+    PickerComponent
   ],
   imports: [
     BrowserModule,

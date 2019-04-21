@@ -50,15 +50,4 @@ export class StudiesService {
         this.studiesUpdated.next([...this.studies]);
       });
   }
-
-  // WIP
-  addParticipant(title: string, description: string, start_time: string, end_time: string){
-    const study_obj: Studies = { id: null , title: title , description: description, start_time: start_time, end_time: end_time, approval: null};
-    this.http.post<{message: string}>('http://localhost:3000/studies', study_obj)
-      .subscribe((responseData) => {
-        console.log(responseData.message);
-        this.studies.push(study_obj);
-        this.studiesUpdated.next([...this.studies]);
-      });
-  }
 }

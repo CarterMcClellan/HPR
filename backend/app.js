@@ -5,7 +5,9 @@ const bodyParser = require('body-parser'); // parsing all post requests
 
 var User = require('./models/user.js');
 var Studies = require('./models/studies.js');
-var Schedule = require('./models/schedule');
+var Schedule = require('./models/schedule.js');
+var PartStudies = require('./models/part-studies.js');
+
 
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -123,20 +125,55 @@ app.post('/oneStudy', (req, res, next) => {
   })
 });
 
+
 // write all of the user schedules to the backend
-app.post('/schedule', (req, res, next) => {
-  console.log(req.body);
+app.post('/scheduler', (req, res, next) => {
   const schedule = new Schedule({
     openings: req.body.openings,
     study_title: req.body.study_title,
     user_email: req.body.user_email
   });
-  console.log(schedule);
-  // schedule.save();
+  schedule.save();
+
   // to ensure no timeout we return a response (201 means success + resource created)
   return res.status(201).json({
     message: 'Schedule has been added'
   });
+
+});
+
+app.post('/allSchedule', (req, res, next) => {
+  Schedule.find({ study_title : req.body.title })
+    .then(documents => {
+    return res.status(200).json({
+      message: 'Succesfullly Found Schedule',
+      schedules: documents
+    });
+  })
+});
+
+app.post('/partStudies', (req, res, next) => {
+  const partStudy = new PartStudies({
+    title: req.body.title,
+    participants: req.body.participants
+  });
+
+  partStudy.save();
+
+  return res.status(201).json({
+    message: 'Participant Study has been added'
+  });
+});
+
+app.get('/partStudies', (req,res, next) => {
+  PartStudies.find()
+    .then(documents => {
+      return res.status(200).json({
+        message: 'Participant studies fetched succesfully from the backend',
+        curr_studies: documents,
+        past_studies: documents
+      });
+    });
 });
 
 // handles all requests targeting localhost 3000/studies
@@ -146,7 +183,7 @@ app.get('/my-studies', (req, res, next) => {
     Studies.find()
       .then(documents => {
         return res.status(200).json({
-          message: 'Curr studies fetched succesfully from the backend',
+          message: 'Researcher studies fetched succesfully from the backend',
           curr_studies: documents,
           past_studies: documents
         });
