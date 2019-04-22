@@ -1,0 +1,83 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$mat-wiscred: (
+    50 : #f8e1e2,
+    100 : #eeb4b6,
+    200 : #e28286,
+    300 : #d65055,
+    400 : #ce2b30,
+    500 : #c5050c,
+    600 : #bf040a,
+    700 : #b80408,
+    800 : #b00306,
+    900 : #a30103,
+    A100 : #ffcece,
+    A200 : #ff9b9b,
+    A400 : #ff6868,
+    A700 : #ff4e4e,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$mat-wiscgrey: (
+    50 : #e9e9e9,
+    100 : #c8c8c8,
+    200 : #a4a4a4,
+    300 : #808080,
+    400 : #646464,
+    500 : #494949,
+    600 : #424242,
+    700 : #393939,
+    800 : #313131,
+    900 : #212121,
+    A100 : #f17d7d,
+    A200 : #eb4f4f,
+    A400 : #ff0808,
+    A700 : #ee0000,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$my-app-primary: mat-palette($mat-blue-grey);
+$my-app-accent:  mat-palette($mat-pink, 500, 900, A100);
+$my-app-warn:    mat-palette($mat-deep-orange);
+
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+
+@include angular-material-theme($my-app-theme);
+
+.alternate-theme {
+  $alternate-primary: mat-palette($mat-wiscred, 500, 500, 900);
+  $alternate-accent:  mat-palette($mat-wiscgrey, 500, 500, 900);
+  $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
+  @include angular-material-theme($alternate-theme);
+}
