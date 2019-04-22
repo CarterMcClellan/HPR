@@ -1,0 +1,17 @@
+mat-form-field,
+textarea {
+  width: 100%;
+}
+.login-card {
+  position: absolute;
+  right: 5px;
+  top: 50px;
+  width: 500px;
+}
+
+.register-card {
+  position: absolute;
+  left: 5px;
+  top: 50px;
+  width: 500px;
+}

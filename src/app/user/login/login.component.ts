@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import {UsersService} from "../user.service";
 import { NgForm } from "@angular/forms";
 
+import {Subscription} from 'rxjs';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,6 +13,9 @@ import { NgForm } from "@angular/forms";
 export class LoginComponent{
   constructor(public usersService: UsersService) {}
   private status:string
+  private userStatusSub: Subscription;
+  userStatus = "";
+
 
   onLogin(form: NgForm){
     if (form.invalid) {
@@ -21,4 +26,18 @@ export class LoginComponent{
     this.status = this.usersService.getStatus();
     form.resetForm();
   }
+    onRegister(form: NgForm) {
+      if (form.invalid) {
+        return;
+      }
+      this.userStatus = this.usersService.getStatus();
+      console.log(this.userStatus);
+      if (this.userStatus === 'admin') {
+        this.usersService.addUsers(form.value.email, form.value.password, "researcher");
+      } else {
+        this.usersService.addUsers(form.value.email, form.value.password, "participant");
+      }
+
+      form.resetForm();
+    }
 }
