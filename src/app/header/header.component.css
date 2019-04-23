@@ -1,5 +1,6 @@
 .mat-tab-nav-bar, .mat-tab-link {
   font-size: 15px;
+
 }
 
 /* color of subject underscore */
@@ -14,6 +15,7 @@
 ::ng-deep .mat-tab-link  {
   color: #ffffff !important;
   background-color: #c5030c;
+  max-height: 50px;
 }
 .fa-user-circle {
   position:absolute;
@@ -25,8 +27,8 @@
 .static-header{
   color: #c5030c; /* official wisconsin red https://teamcolorcodes.com/wisconsin-badgers-colors/ */
   font-size: 32px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   padding-left: 200px;
   font-weight: bold;
   font-family: Helvetica;
@@ -36,4 +38,5 @@
   background-color: #c5030c;
   color: white;
   padding-left: 200px;
+  height: 50px;
 }
