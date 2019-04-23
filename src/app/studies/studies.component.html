@@ -1,13 +1,7 @@
-<ng-container *ngIf="studies">
-    <mat-card *ngFor="let study of studies">
-      <h2 class="title"> {{ study.title }} </h2>
-      <mat-divider></mat-divider>
-      <h4> Study  </h4> <p> {{ study.study }}  </p>
-      <mat-divider></mat-divider>
-      <h4> Description </h4> <p>{{ study.description}} </p>
-      <mat-divider></mat-divider>
-      <h4> Study Time </h4><p> {{ study.time}} </p>
-      <a href="#"> Sign Up                   <i class="fa fa-arrow-right fa-lg" style="color:navy"></i></a>
-      <mat-divider></mat-divider>
-    </mat-card>
+<ng-container *ngIf="status=='researcher'">
+    <mat-toolbar >Create Studies</mat-toolbar>
+    <app-studies-create></app-studies-create>
 </ng-container>
+
+<mat-toolbar >Currently Available Studies</mat-toolbar>
+<app-studies-list></app-studies-list>

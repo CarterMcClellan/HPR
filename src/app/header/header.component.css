@@ -16,11 +16,11 @@
   position:absolute;
   top:10;
   right:10px;
-  color: white; /* official wisconsin red https://teamcolorcodes.com/wisconsin-badgers-colors/ */
+  color: white;
 }
 
 .static-header{
-  color:#C5050C;
+  color:#C5050C; /* official wisconsin red https://teamcolorcodes.com/wisconsin-badgers-colors/ */
   font-size: 50px;
   padding: 40px;
 }

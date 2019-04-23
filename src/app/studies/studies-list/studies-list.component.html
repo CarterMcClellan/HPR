@@ -1,0 +1,14 @@
+<ng-container *ngIf="studies">
+    <mat-card *ngFor="let study of studies">
+      <h2 class="title"> {{ study.title }} </h2>
+      <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
+      <h4> Description </h4> <p>{{ study.description}} </p>
+      <mat-divider></mat-divider>
+      <h4> Study Time </h4><p> From {{ study.start_time}} to {{ study.end_time }}</p>
+      <ng-container *ngIf="userStatus !== 'researcher'">
+        <button mat-raised-button color="accent" (click)="checkView(study.title)">Sign Up</button>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </mat-card>
+</ng-container>

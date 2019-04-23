@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,  HTTP_INTERCEPTORS} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // all of these forms will be used to process the registration and login process'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -15,17 +16,32 @@ import {MatTabsModule,
   MatInputModule,
   MatFormFieldModule,
   MatGridListModule,
-  MatExpansionModule} from '@angular/material';
+  MatExpansionModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatCheckboxModule } from '@angular/material';
 
 // these are all the components which we have defined in our project ourselves
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { StudiesComponent } from './studies/studies.component';
-import { UserComponent } from './user/user.component';
-import { MyStudiesComponent } from './my-studies/my-studies.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
 
+import { HeaderComponent } from './header/header.component';
+
+import { StudiesListComponent } from './studies/studies-list/studies-list.component';
+import { StudiesCreateComponent } from './studies/studies-create/studies-create.component';
+import { StudiesComponent } from './studies/studies.component';
+
+import { UserComponent } from './user/user.component';
+import { LoginComponent } from './user/login/login.component';
+import { SignupComponent } from './user/signup/signup.component';
+import { UserInterceptor } from './user/user.interceptor';
+
+import { MyStudiesComponent } from './my-studies/my-studies.component';
+
+import { AppRoutingModule } from './app-routing.module';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { SchedulerComponent } from './scheduler/scheduler.component';
+import { PickerComponent } from './picker/picker.component';
 
 
 @NgModule({
@@ -33,10 +49,18 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     HeaderComponent,
     StudiesComponent,
+    StudiesListComponent,
+    StudiesCreateComponent,
     UserComponent,
-    MyStudiesComponent
+    MyStudiesComponent,
+    LoginComponent,
+    SignupComponent,
+    SchedulerComponent,
+    PickerComponent
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -53,9 +77,16 @@ import { AppRoutingModule } from './app-routing.module';
     MatFormFieldModule,
     MatGridListModule,
     MatInputModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule
   ],
-  providers: [],
+  exports: [
+    MatToolbarModule
+  ],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: UserInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

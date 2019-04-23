@@ -1,75 +1,73 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+
+import { MyStudies } from "./my-studies.model";
+import { PartStudies } from "../picker/part-studies.model"
+import { MyStudiesService } from "./my-studies.service";
+
+import { UsersService } from "../user/user.service";
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-studies',
   templateUrl: './my-studies.component.html',
   styleUrls: ['./my-studies.component.css']
 })
+
 export class MyStudiesComponent implements OnInit {
-  /**
-  * this is just a placeholder variable
-  * until the backend is configured,
-  * @ignore
-  */
-  past_studies = [
-    { title: "Study Title", study: "Not Sure", description: "TBD", time: "TBD", approval: "Approved" },
-    { title: "Study Title 2", study: "Not Sure", description: "TBD", time: "11-12", approval: "Not Approved" },
-    { title: "Study Title 3", study: "The Study of Stuff", description: "Eating Frogs", time: "TBD", approval: "TBD" },
-    { title: "Study Title", study: "Not Sure", description: "TBD", time: "TBD", approval: "Approved" },
-    { title: "Study Title 2", study: "Not Sure", description: "TBD", time: "11-12", approval: "Not Approved" },
-    { title: "Study Title 3", study: "The Study of Stuff", description: "Eating Frogs", time: "TBD", approval: "TBD" },
-    { title: "Study Title", study: "Not Sure", description: "TBD", time: "TBD", approval: "Approved" },
-    { title: "Study Title 2", study: "Not Sure", description: "TBD", time: "11-12", approval: "Not Approved" },
-    { title: "Study Title 3", study: "The Study of Stuff", description: "Eating Frogs", time: "TBD", approval: "TBD" },
-    { title: "Study Title", study: "Not Sure", description: "TBD", time: "TBD", approval: "Approved" },
-    { title: "Study Title 2", study: "Not Sure", description: "TBD", time: "11-12", approval: "Not Approved" },
-    { title: "Study Title 3", study: "The Study of Stuff", description: "Eating Frogs", time: "TBD", approval: "TBD" }
- ];
- 
-/**
-  * this is just a placeholder variable
-  * until the backend is configured,
-  * @ignore
-  */
- curr_studies = [
-  { title: "Study Title", study: "Not Sure", description: "TBD", time: "TBD", approval: "Approved" },
-  { title: "Study Title 2", study: "Not Sure", description: "TBD", time: "11-12", approval: "Not Approved" },
-];
+  curr_studies: MyStudies[] = [];
+  past_studies: MyStudies[] = [];
+  my_studies: MyStudies[] = [];
 
- /**
-  * title of the study being offered,
-  * could potentially need to dynamically
-  * scale font size depending on length of
-  * title
-  */
- title = "";
+  curr_part_studies: PartStudies[] = [];
 
- /**
- * not sure what this is akshat threw
- * it in his mock up
- */
- study = "";
+  email: string;
+  userStatus: string;
 
- /**
- * overall description of the study
- */
- description = "";
+  private userStatusSub: Subscription;
+  private currStudiesSub: Subscription;
+  private pastStudiesSub: Subscription;
+  private currPartStudiesSub: Subscription;
 
- /**
- * listed timeslots/ researcher availbility
- * this can be set as a property or chosen via
- * the calendar application
- */
- time = "";
-  constructor() { }
 
-/**
-  * Initialize user specific variables, note that this is all dependends on
-  * the authentication status of the user
-  *
-  *  @returns void
-  */
+  constructor(public myStudiesService: MyStudiesService, public userService: UsersService, private router: Router) {}
+
   ngOnInit() {
+    this.email = this.userService.getEmail();
+    this.userStatus = this.userService.getStatus();
+    this.userStatusSub = this.userService.getUserStatus()
+      .subscribe(response => {
+        this.email = this.userService.getEmail();
+        this.userStatus = this.userService.getStatus();
+      });
+
+    if(this.userStatus === 'researcher'){
+      this.myStudiesService.getPastStudies();
+      this.pastStudiesSub = this.myStudiesService.getPastStudiesUpdateListener()
+        .subscribe((past_study : MyStudies[]) => {
+          this.past_studies = past_study;
+          console.log(this.past_studies);
+        });
+
+      this.myStudiesService.getCurrStudies();
+      this.currStudiesSub = this.myStudiesService.getCurrStudiesUpdateListener()
+        .subscribe((curr_study : MyStudies[]) => {
+          this.curr_studies = curr_study;
+        });
+    } else {
+      console.log("participant");
+      this.myStudiesService.getPartStudies();
+      this.currPartStudiesSub = this.myStudiesService.getCurrPartStudiesUpdateListener()
+        .subscribe((curr_part_study : PartStudies[]) => {
+          this.curr_part_studies = curr_part_study;
+        })
+    }
+
   }
 
+  checkView(studyTitle) {
+    this.userStatus = this.userService.getStatus();
+    this.router.navigate(['/picker'], {queryParams: {study: studyTitle}});
+  }
 }

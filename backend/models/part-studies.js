@@ -5,13 +5,7 @@ const mongoose = require("mongoose");
 //    of the object information
 const studySchema = mongoose.Schema({
   title: { type: String, required: true },
-  description: { type: String, required: true },
-  start_time: { type: String, required: true },
-  end_time: { type: String, required: true },
-  approval: {type: String, require: true},
-  creator: { type: String, required: true }
+  participants : { type: Array, required: true}
 });
 
-
-
-module.exports = mongoose.model("Study", studySchema);
+module.exports = mongoose.model("partStudy", studySchema);
