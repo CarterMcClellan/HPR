@@ -44,11 +44,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
             label: 'My Studies',
             link: './mystudies',
             index: 1
-        },{
+        }, {
           label: 'Login',
           link: './login',
           index: 2
-      },{
+      }, {
         label: 'Register',
         link: './signup',
         index: 3
@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     ];
 }
-/**
+/*
   * Initialize user specific variables, note that this is all dependends on
   * the authentication status of the user
   *

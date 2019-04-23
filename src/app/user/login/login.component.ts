@@ -14,8 +14,7 @@ export class LoginComponent{
   constructor(public usersService: UsersService) {}
   private status:string
   private userStatusSub: Subscription;
-  userStatus = "";
-
+  userStatus = '';
 
   onLogin(form: NgForm){
     if (form.invalid) {
@@ -33,11 +32,18 @@ export class LoginComponent{
       this.userStatus = this.usersService.getStatus();
       console.log(this.userStatus);
       if (this.userStatus === 'admin') {
-        this.usersService.addUsers(form.value.email, form.value.password, "researcher");
+        this.usersService.addUsers(form.value.email, form.value.password, 'researcher');
       } else {
-        this.usersService.addUsers(form.value.email, form.value.password, "participant");
+        this.usersService.addUsers(form.value.email, form.value.password, 'participant');
       }
 
       form.resetForm();
+    }
+
+    ngOnInit(){
+      this.userStatusSub = this.usersService.getUserStatus()
+      .subscribe( response => {
+        this.userStatus = response.status;
+      })
     }
 }

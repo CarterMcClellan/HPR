@@ -2,14 +2,14 @@ mat-form-field,
 textarea {
   width: 100%;
 }
-.login-card {
+.register-card {
   position: absolute;
   right: 5px;
   top: 50px;
   width: 500px;
 }
 
-.register-card {
+.login-card {
   position: absolute;
   left: 5px;
   top: 50px;
