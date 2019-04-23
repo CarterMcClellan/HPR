@@ -1,6 +1,13 @@
 <!-- dont load the form group until timeSeries data is truthy -->
+<mat-toolbar class="page-title">Study Sign Up</mat-toolbar>
+<mat-card class="alternate-theme">
+  <mat-card class="scheduler-card">
+    <mat-card-title> {{studyTitle}} </mat-card-title>
+    <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
+      <p>Please check on all possible times you may be available to participate in this study.</p>
 <form *ngIf="timeSeries" [formGroup]="interestFormGroup" (ngSubmit)="submit()">
-    <mat-grid-list [cols]="delta">
+    <mat-grid-list class="scheduler" [cols]="delta" rowHeight="100px" gutterSize="10px">
         <div *ngFor="let interest of timeSeries; let i = index" >
           <mat-grid-tile>
               <mat-checkbox class="example-margin"
@@ -9,7 +16,9 @@
 
         </div>
     </mat-grid-list>
-    <button mat-raised-button color="accent">Submit</button>
+    <button mat-raised-button color="primary" style="margin-left: 20px">Submit</button>
 </form>
+</mat-card>
+</mat-card>
 
 

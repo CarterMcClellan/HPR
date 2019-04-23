@@ -1,3 +1,22 @@
 mat-grid-tile {
-  background-color: lightblue;
+  background-color: white;
+}
+
+.scheduler {
+  margin: 20px;
+}
+
+.page-title {
+  background-color: white;
+  padding-top: 50px;
+  padding-bottom: 40px;
+  padding-left: 200px;
+  font-size: 32px;
+}
+
+.scheduler-card {
+  background-color: #f7f7f7;
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-bottom: 40px;
 }
