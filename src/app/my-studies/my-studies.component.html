@@ -1,20 +1,27 @@
+<ng-container *ngIf="userStatus=='researcher'">
+    <mat-toolbar class="page-title">Post New Study</mat-toolbar>
+    <app-studies-create></app-studies-create>
+</ng-container>
+
 <ng-container *ngIf="userStatus == 'researcher'">
-    <mat-toolbar>Current Studies</mat-toolbar>
+    <mat-toolbar class="page-title">My Studies</mat-toolbar>
     <ng-container *ngIf="curr_studies && email">
         <div *ngFor="let study of curr_studies">
             <ng-template *ngIf="study.creator == email; then match"></ng-template>
             <ng-template #match>
-              <h2 class="title"> {{ study.title }} </h2>
+              <mat-card class="alternate-theme">
+                <mat-card class="study-item">
+              <mat-card-title> {{ study.title }} </mat-card-title>
               <mat-divider></mat-divider>
               <mat-divider></mat-divider>
               <h4> Description </h4> <p>{{ study.description}} </p>
               <mat-divider></mat-divider>
               <h4> Study Time </h4><p> From {{ study.start_time }} to {{ study.end_time }}</p>
-
               <ng-container *ngIf="userStatus == 'researcher'">
-                  <button mat-raised-button color="accent" (click)="checkView(study.title)"> Pick Particpants</button>
-                  <mat-divider></mat-divider>
+                  <button mat-raised-button color="primary" (click)="checkView(study.title)">Pick Particpants</button>
               </ng-container>
+            </mat-card>
+          </mat-card>
 
             </ng-template>
         </div>
@@ -22,13 +29,17 @@
 </ng-container>
 
 <ng-container *ngIf="userStatus == 'participant'">
-    <mat-toolbar>Current Studies</mat-toolbar>
+    <mat-toolbar class="page-title">My Studies</mat-toolbar>
     <ng-container *ngIf="curr_part_studies && email">
         <div *ngFor="let study of curr_part_studies">
-            <mat-card>
-                <h2> Title: {{ study.title }}</h2>
-                <h2> Enrolled Peoples {{ study.participants}}</h2>
+          <mat-card class="alternate-theme">
+            <mat-card class="study-item">
+                <mat-card-title> {{ study.title }}</mat-card-title>
+                <mat-divider></mat-divider>
+                <mat-divider></mat-divider>
+                <h4> Enrolled People </h4> <p>{{ study.participants}}</p>
             </mat-card>
+          </mat-card>
         </div>
     </ng-container>
 </ng-container>

@@ -1,14 +1,15 @@
 <ng-container *ngIf="studies">
-    <mat-card *ngFor="let study of studies">
-      <h2 class="title"> {{ study.title }} </h2>
+  <mat-card class="alternate-theme">
+    <mat-card class= "study-item" *ngFor="let study of studies">
+      <mat-card-title> {{ study.title }} </mat-card-title>
       <mat-divider></mat-divider>
       <mat-divider></mat-divider>
       <h4> Description </h4> <p>{{ study.description}} </p>
       <mat-divider></mat-divider>
       <h4> Study Time </h4><p> From {{ study.start_time}} to {{ study.end_time }}</p>
       <ng-container *ngIf="userStatus !== 'researcher'">
-        <button mat-raised-button color="accent" (click)="checkView(study.title)">Sign Up</button>
-        <mat-divider></mat-divider>
+        <button mat-raised-button color="primary" (click)="checkView(study.title)">Sign Up</button>
       </ng-container>
     </mat-card>
+  </mat-card>
 </ng-container>

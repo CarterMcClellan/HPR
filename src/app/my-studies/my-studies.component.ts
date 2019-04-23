@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { MyStudies } from "./my-studies.model";
-import { PartStudies } from "../picker/part-studies.model"
-import { MyStudiesService } from "./my-studies.service";
+import { MyStudies } from './my-studies.model';
+import { PartStudies } from '../picker/part-studies.model';
+import { MyStudiesService } from './my-studies.service';
 
-import { UsersService } from "../user/user.service";
+import { UsersService } from '../user/user.service';
 
 import { Router } from '@angular/router';
 

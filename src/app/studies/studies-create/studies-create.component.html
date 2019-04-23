@@ -1,7 +1,8 @@
 <!-- title: string, study: string, description: string, time: string -->
-  <mat-card>
+<mat-card class="alternate-theme">
+  <mat-card class="create-study">
     <form (submit)="onAddStudies(studyForm)" #studyForm="ngForm">
-      <mat-form-field>
+      <mat-form-field  class= "name-textarea">
         <input
           matInput
           type="text"
@@ -14,8 +15,8 @@
         <mat-error *ngIf="title.invalid">Please enter a study title.</mat-error>
       </mat-form-field>
 
-      <mat-form-field>
-        <input
+      <mat-form-field  class= "name-textarea">
+        <textarea
           matInput
           type="text"
           name="description"
@@ -23,12 +24,12 @@
           required
           minlength="3"
           placeholder="Study Description"
-          #description="ngModel">
+          #description="ngModel"></textarea>
         <mat-error *ngIf="description.invalid">Please enter a study descrition.</mat-error>
       </mat-form-field>
 
       <!-- Start Time-->
-      <mat-form-field>
+      <mat-form-field  class= "date-textarea">
         <input
           matInput
           ngModel
@@ -36,14 +37,14 @@
           name="start_time"
           #start_time="ngModel"
           [matDatepicker]="start_picker"
-          placeholder="Choose a start time">
+          placeholder="Study start time">
         <mat-datepicker-toggle matSuffix [for]="start_picker"></mat-datepicker-toggle>
         <mat-datepicker #start_picker></mat-datepicker>
         <mat-error *ngIf="start_time.invalid"></mat-error>
       </mat-form-field>
 
       <!-- End Time-->
-      <mat-form-field>
+      <mat-form-field class= "date-textarea">
         <input
           matInput
           ngModel
@@ -51,15 +52,17 @@
           name="end_time"
           #end_time="ngModel"
           [matDatepicker]="end_picker"
-          placeholder="Choose a end time">
+          placeholder="Study end time">
         <mat-datepicker-toggle matSuffix [for]="end_picker"></mat-datepicker-toggle>
         <mat-datepicker #end_picker></mat-datepicker>
         <mat-error *ngIf="start_time.invalid"></mat-error>
       </mat-form-field>
 
+    </form>
+
       <button
         mat-raised-button
-        color="accent"
-        type="submit">Save Study</button>
-    </form>
+        color="primary"
+        type="submit">Post Study</button>
   </mat-card>
+</mat-card>

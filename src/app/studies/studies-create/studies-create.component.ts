@@ -12,10 +12,10 @@ import { UsersService } from "../../user/user.service"
 })
 
 export class StudiesCreateComponent {
-  enteredTitle = "";
-  enteredContent = "";
-  enteredDescription = "";
-  enteredTime = "";
+  enteredTitle = '';
+  enteredContent = '';
+  enteredDescription = '';
+  enteredTime = '';
   email: string;
   status: string;
 

@@ -1,12 +1,16 @@
-<form *ngIf="schedules" [formGroup]="interestFormGroup" (ngSubmit)="submit()">
+<mat-toolbar class="page-title">My Studies - Pick Participants</mat-toolbar>
+<mat-card class="alternate-theme">
+  <form *ngIf="schedules" [formGroup]="interestFormGroup" (ngSubmit)="submit()">
     <div *ngFor="let schedule of schedules">
-        <mat-card>
+          <mat-card class="study-item">
           <h4> Email </h4>{{ schedule.user_email }}
           <h4> Availabilities </h4>{{ schedule.openings }}
-          <h4>Approve User:    <mat-checkbox class="example-margin" (change)="onChange($event)" [value]="schedule"></mat-checkbox></h4>
+          <h4>Approve User: <mat-checkbox (change)="onChange($event)" [value]="schedule" style="margin-left:10px" ></mat-checkbox></h4>
         </mat-card>
       </div>
-      <button mat-raised-button color="accent">Submit</button>
+      <button class="submit-button" mat-raised-button color="primary">Submit</button>
 </form>
+
+</mat-card>
 
 

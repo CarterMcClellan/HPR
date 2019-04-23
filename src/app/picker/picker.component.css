@@ -1,0 +1,18 @@
+.page-title {
+  background-color: white;
+  padding-top: 50px;
+  padding-bottom: 40px;
+  padding-left: 200px;
+  font-size: 32px;
+}
+
+.study-item {
+  background-color: #f7f7f7;
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-bottom: 40px;
+}
+
+.submit-button {
+  margin-left: 200px;
+}
