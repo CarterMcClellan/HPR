@@ -30,9 +30,7 @@ import { StudiesListComponent } from './studies/studies-list/studies-list.compon
 import { StudiesCreateComponent } from './studies/studies-create/studies-create.component';
 import { StudiesComponent } from './studies/studies.component';
 
-import { UserComponent } from './user/user.component';
 import { LoginComponent } from './user/login/login.component';
-import { SignupComponent } from './user/signup/signup.component';
 import { UserInterceptor } from './user/user.interceptor';
 
 import { MyStudiesComponent } from './my-studies/my-studies.component';
@@ -51,10 +49,8 @@ import { PickerComponent } from './picker/picker.component';
     StudiesComponent,
     StudiesListComponent,
     StudiesCreateComponent,
-    UserComponent,
     MyStudiesComponent,
     LoginComponent,
-    SignupComponent,
     SchedulerComponent,
     PickerComponent
   ],

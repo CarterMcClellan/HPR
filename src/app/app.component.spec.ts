@@ -6,9 +6,7 @@ import { StudiesComponent } from './studies/studies.component';
 import { StudiesListComponent } from './studies/studies-list/studies-list.component';
 import { StudiesCreateComponent } from './studies/studies-create/studies-create.component';
 import { MyStudiesComponent } from './my-studies/my-studies.component';
-import { UserComponent } from './user/user.component';
 import { LoginComponent } from './user/login/login.component';
-import { SignupComponent } from './user/signup/signup.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -32,7 +30,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 // all of these forms will be used to process the registration and login process'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { DemoComponent } from './studies/calendar/calendar.component';
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -65,15 +62,12 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        DemoComponent,
         HeaderComponent,
         StudiesComponent,
         StudiesListComponent,
         StudiesCreateComponent,
-        UserComponent,
         MyStudiesComponent,
         LoginComponent,
-        SignupComponent
       ],
       providers: []
     }).compileComponents();

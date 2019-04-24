@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './user.model';
-import { Subject } from 'rxjs';
+import { Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,10 +31,21 @@ export class UsersService {
     return this.status;
   }
 
-  getEmail() {
+  getEmail(): string {
     return this.email;
   }
 
+  setStatus(status) {
+    this.status = status;
+  }
+
+  setEmail(email) {
+    this.email = email;
+  }
+
+  setToken(token){
+    this.token = token;
+  }
   // this functionality is only relevant for the researcher view as they are the only class which is
   // given the privelege to add participants to the study
   addUsers(email, password, authentication) {
@@ -46,7 +57,7 @@ export class UsersService {
       });
   }
 
-  // this functionality is only relevant for the researcher view as they are the only class which is
+    // this functionality is only relevant for the researcher view as they are the only class which is
   // given the privelege to add participants to the study
   login(email, password, authentication) {
     const user_obj: User = { id: null , email: email, password: password, authentication: authentication};

@@ -48,12 +48,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           label: 'Login',
           link: './login',
           index: 2
-      }, {
-        label: 'Register',
-        link: './signup',
-        index: 3
-      },
-
+      }
     ];
 }
 /*
@@ -79,6 +74,7 @@ ngOnDestroy(){
 
 onLogout() {
   this.userService.logout();
+  this.router.navigate(['/login']);
 }
 
 }
