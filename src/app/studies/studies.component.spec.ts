@@ -13,6 +13,7 @@ import {MatTabsModule,
   MatGridListModule,
   MatExpansionModule} from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('StudiesListComponent', () => {
   let component: StudiesListComponent;
@@ -32,7 +33,8 @@ describe('StudiesListComponent', () => {
         MatGridListModule,
         MatInputModule,
         MatExpansionModule,
-        HttpClientModule
+        HttpClientModule,
+        RouterTestingModule
       ],
       declarations: [ StudiesListComponent ]
     })

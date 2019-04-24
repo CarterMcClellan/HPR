@@ -56,7 +56,6 @@ export class MyStudiesComponent implements OnInit {
           this.curr_studies = curr_study;
         });
     } else {
-      console.log("participant");
       this.myStudiesService.getPartStudies();
       this.currPartStudiesSub = this.myStudiesService.getCurrPartStudiesUpdateListener()
         .subscribe((curr_part_study : PartStudies[]) => {

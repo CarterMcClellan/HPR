@@ -12,8 +12,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RouterTestingModule } from '@angular/router/testing';
 
-
-
 import {MatTabsModule,
   MatTableModule,
   MatCardModule,
@@ -23,16 +21,16 @@ import {MatTabsModule,
   MatInputModule,
   MatFormFieldModule,
   MatGridListModule,
-  MatExpansionModule} from '@angular/material';
+  MatExpansionModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatCheckboxModule} from '@angular/material';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 // all of these forms will be used to process the registration and login process'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -55,10 +53,9 @@ describe('AppComponent', () => {
         MatGridListModule,
         MatInputModule,
         MatExpansionModule,
-        CalendarModule.forRoot({
-          provide: DateAdapter,
-          useFactory: adapterFactory
-        })
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatCheckboxModule
       ],
       declarations: [
         AppComponent,
