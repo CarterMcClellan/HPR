@@ -91,15 +91,20 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="studieslistcomponent.html#email" class="tsd-kind-icon">email</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="studieslistcomponent.html#postssub" class="tsd-kind-icon">posts<wbr>Sub</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="studieslistcomponent.html#router" class="tsd-kind-icon">router</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="studieslistcomponent.html#studies" class="tsd-kind-icon">studies</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="studieslistcomponent.html#studiesservice" class="tsd-kind-icon">studies<wbr>Service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="studieslistcomponent.html#userservice" class="tsd-kind-icon">user<wbr>Service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="studieslistcomponent.html#userstatus" class="tsd-kind-icon">user<wbr>Status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="studieslistcomponent.html#userstatussub" class="tsd-kind-icon">user<wbr>Status<wbr>Sub</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="studieslistcomponent.html#ngondestroy" class="tsd-kind-icon">ng<wbr>OnDestroy</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="studieslistcomponent.html#checkview" class="tsd-kind-icon">check<wbr>View</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="studieslistcomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
 							</ul>
 						</section>
@@ -112,19 +117,25 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Studies<wbr>List<wbr>Component<span class="tsd-signature-symbol">(</span>studiesService<span class="tsd-signature-symbol">: </span><a href="studiesservice.html" class="tsd-signature-type">StudiesService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="studieslistcomponent.html" class="tsd-signature-type">StudiesListComponent</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Studies<wbr>List<wbr>Component<span class="tsd-signature-symbol">(</span>studiesService<span class="tsd-signature-symbol">: </span><a href="studiesservice.html" class="tsd-signature-type">StudiesService</a>, userService<span class="tsd-signature-symbol">: </span><a href="usersservice.html" class="tsd-signature-type">UsersService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="studieslistcomponent.html" class="tsd-signature-type">StudiesListComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/master/src/app/studies/studies-list/studies-list.component.ts#L14">src/app/studies/studies-list/studies-list.component.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/6d65047/src/app/studies/studies-list/studies-list.component.ts#L22">src/app/studies/studies-list/studies-list.component.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>studiesService: <a href="studiesservice.html" class="tsd-signature-type">StudiesService</a></h5>
+								</li>
+								<li>
+									<h5>userService: <a href="usersservice.html" class="tsd-signature-type">UsersService</a></h5>
+								</li>
+								<li>
+									<h5>router: <span class="tsd-signature-type">Router</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="studieslistcomponent.html" class="tsd-signature-type">StudiesListComponent</a></h4>
@@ -134,13 +145,33 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="email" class="tsd-anchor"></a>
+					<h3>email</h3>
+					<div class="tsd-signature tsd-kind-icon">email<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/6d65047/src/app/studies/studies-list/studies-list.component.ts#L22">src/app/studies/studies-list/studies-list.component.ts:22</a></li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="postssub" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> posts<wbr>Sub</h3>
 					<div class="tsd-signature tsd-kind-icon">posts<wbr>Sub<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subscription</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/master/src/app/studies/studies-list/studies-list.component.ts#L14">src/app/studies/studies-list/studies-list.component.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/6d65047/src/app/studies/studies-list/studies-list.component.ts#L19">src/app/studies/studies-list/studies-list.component.ts:19</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="router" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> router</h3>
+					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/6d65047/src/app/studies/studies-list/studies-list.component.ts#L24">src/app/studies/studies-list/studies-list.component.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -150,7 +181,7 @@
 					<div class="tsd-signature tsd-kind-icon">studies<span class="tsd-signature-symbol">:</span> <a href="../interfaces/studies.html" class="tsd-signature-type">Studies</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/master/src/app/studies/studies-list/studies-list.component.ts#L13">src/app/studies/studies-list/studies-list.component.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/6d65047/src/app/studies/studies-list/studies-list.component.ts#L18">src/app/studies/studies-list/studies-list.component.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -160,7 +191,37 @@
 					<div class="tsd-signature tsd-kind-icon">studies<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="studiesservice.html" class="tsd-signature-type">StudiesService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/master/src/app/studies/studies-list/studies-list.component.ts#L16">src/app/studies/studies-list/studies-list.component.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/6d65047/src/app/studies/studies-list/studies-list.component.ts#L24">src/app/studies/studies-list/studies-list.component.ts:24</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="userservice" class="tsd-anchor"></a>
+					<h3>user<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">user<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="usersservice.html" class="tsd-signature-type">UsersService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/6d65047/src/app/studies/studies-list/studies-list.component.ts#L24">src/app/studies/studies-list/studies-list.component.ts:24</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="userstatus" class="tsd-anchor"></a>
+					<h3>user<wbr>Status</h3>
+					<div class="tsd-signature tsd-kind-icon">user<wbr>Status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/6d65047/src/app/studies/studies-list/studies-list.component.ts#L21">src/app/studies/studies-list/studies-list.component.ts:21</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="userstatussub" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> user<wbr>Status<wbr>Sub</h3>
+					<div class="tsd-signature tsd-kind-icon">user<wbr>Status<wbr>Sub<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subscription</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/6d65047/src/app/studies/studies-list/studies-list.component.ts#L20">src/app/studies/studies-list/studies-list.component.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -168,18 +229,24 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="ngondestroy" class="tsd-anchor"></a>
-					<h3>ng<wbr>OnDestroy</h3>
+					<a name="checkview" class="tsd-anchor"></a>
+					<h3>check<wbr>View</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">ng<wbr>OnDestroy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">check<wbr>View<span class="tsd-signature-symbol">(</span>studyTitle<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/master/src/app/studies/studies-list/studies-list.component.ts#L26">src/app/studies/studies-list/studies-list.component.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/6d65047/src/app/studies/studies-list/studies-list.component.ts#L35">src/app/studies/studies-list/studies-list.component.ts:35</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>studyTitle: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -194,7 +261,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/master/src/app/studies/studies-list/studies-list.component.ts#L18">src/app/studies/studies-list/studies-list.component.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/CarterMcClellan/HPR/blob/6d65047/src/app/studies/studies-list/studies-list.component.ts#L26">src/app/studies/studies-list/studies-list.component.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -229,10 +296,31 @@
 						<a href="headercomponent.html" class="tsd-kind-icon">Header<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="logincomponent.html" class="tsd-kind-icon">Login<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="mystudiescomponent.html" class="tsd-kind-icon">My<wbr>Studies<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="mystudiesservice.html" class="tsd-kind-icon">My<wbr>Studies<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="pickercomponent.html" class="tsd-kind-icon">Picker<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="pickerservice.html" class="tsd-kind-icon">Picker<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="schedulercomponent.html" class="tsd-kind-icon">Scheduler<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="schedulerservice.html" class="tsd-kind-icon">Scheduler<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="studiescomponent.html" class="tsd-kind-icon">Studies<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="studiescreatecomponent.html" class="tsd-kind-icon">Studies<wbr>Create<wbr>Component</a>
 					</li>
 				</ul>
 				<ul class="current">
@@ -242,8 +330,14 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="studieslistcomponent.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="studieslistcomponent.html#email" class="tsd-kind-icon">email</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="studieslistcomponent.html#postssub" class="tsd-kind-icon">posts<wbr>Sub</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="studieslistcomponent.html#router" class="tsd-kind-icon">router</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="studieslistcomponent.html#studies" class="tsd-kind-icon">studies</a>
@@ -251,8 +345,17 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="studieslistcomponent.html#studiesservice" class="tsd-kind-icon">studies<wbr>Service</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="studieslistcomponent.html#userservice" class="tsd-kind-icon">user<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="studieslistcomponent.html#userstatus" class="tsd-kind-icon">user<wbr>Status</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="studieslistcomponent.html#userstatussub" class="tsd-kind-icon">user<wbr>Status<wbr>Sub</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="studieslistcomponent.html#ngondestroy" class="tsd-kind-icon">ng<wbr>OnDestroy</a>
+								<a href="studieslistcomponent.html#checkview" class="tsd-kind-icon">check<wbr>View</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="studieslistcomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a>
@@ -265,13 +368,28 @@
 						<a href="studiesservice.html" class="tsd-kind-icon">Studies<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="usercomponent.html" class="tsd-kind-icon">User<wbr>Component</a>
+						<a href="userinterceptor.html" class="tsd-kind-icon">User<wbr>Interceptor</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="usersservice.html" class="tsd-kind-icon">Users<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/mystudies.html" class="tsd-kind-icon">My<wbr>Studies</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="../interfaces/partstudies.html" class="tsd-kind-icon">Part<wbr>Studies</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/scheduler.html" class="tsd-kind-icon">Scheduler</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="../interfaces/studies.html" class="tsd-kind-icon">Studies</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/tile.html" class="tsd-kind-icon">Tile</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/user.html" class="tsd-kind-icon">User</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="../globals.html#approuting" class="tsd-kind-icon">app<wbr>Routing</a>
