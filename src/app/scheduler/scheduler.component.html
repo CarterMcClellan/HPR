@@ -10,6 +10,7 @@
     <mat-grid-list class="scheduler" [cols]="delta" rowHeight="100px" gutterSize="10px">
         <div *ngFor="let interest of timeSeries; let i = index" >
           <mat-grid-tile>
+
               <mat-checkbox class="example-margin"
               (change)="onChange($event)" [value]="interest">{{interest.text}}</mat-checkbox>
           </mat-grid-tile>

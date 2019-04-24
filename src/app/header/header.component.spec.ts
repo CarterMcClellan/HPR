@@ -14,6 +14,7 @@ import {MatTabsModule,
   MatExpansionModule} from '@angular/material';
 
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -33,7 +34,8 @@ describe('HeaderComponent', () => {
         MatGridListModule,
         MatInputModule,
         MatExpansionModule,
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientModule
       ],
       declarations: [ HeaderComponent ]
     })

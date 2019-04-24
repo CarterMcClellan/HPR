@@ -25,6 +25,9 @@ export class SchedulerComponent implements OnInit {
   delta: number;
   email: string;
 
+  start_number: number;
+  end_number: number;
+
   routeSub : Subscription;
   interestFormGroup : FormGroup;
 
@@ -51,7 +54,7 @@ export class SchedulerComponent implements OnInit {
         const delta = this.calcDelta(start_date, end_date);
         this.delta = delta;
         const interval = .5;
-        this.timeSeries = this.generateTimeseries(delta, interval);
+        this.timeSeries = this.generateTimeseries(start_date, end_date, delta, interval);
         this.interestFormGroup = this.formBuilder.group({
           interests: this.formBuilder.array([])
         });
@@ -59,12 +62,11 @@ export class SchedulerComponent implements OnInit {
   }
 
   calcDelta(start_date, end_date) {
-    var as_date_start = new Date(start_date);
-    var as_date_end = new Date(end_date);
-    var s_date = as_date_start.getDate();
-    var e_date = as_date_end.getDate();
+    const as_date_start = new Date(start_date);
+    const as_date_end = new Date(end_date);
 
-    var delta = e_date - s_date;
+    const diffTime = Math.abs(as_date_end.getTime() - as_date_start.getTime());
+    const delta = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
     if (delta < 0){
       console.log("date overlap occurs at the end of the month #TODO");
@@ -73,15 +75,31 @@ export class SchedulerComponent implements OnInit {
     }
   }
 
-  generateTimeseries(delta, interval) {
-    console.log(delta);
+  generateTimeseries(start_date, end_date, delta, interval) {
     var tiles = [];
-    for(var j=0; j < 7; j+=interval){
-      for(var i=1; i < delta+1; i++){
-        tiles.push({cols: 1, rows: 1, text: "Day " + i.toString() + " : " + "hour " + j.toString() });
+    const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+    var currentDay = new Date(start_date);
+    var currentHour = new Date("Sat Apr 20 2019 09:00:00 GMT-0700");
+
+    for(var j=0; j < 10; j+=interval){
+      for(var i=0; i < delta; i++){
+        tiles.push({cols: 1, rows: 1, text: days[i] + " , " + this.formatAMPM(currentHour) });
+        currentDay.setDate(currentDay.getDate() + 1);
       }
+      currentHour.setTime(currentHour.getTime() + (1/2*60*60*1000));
     }
     return tiles;
+  }
+
+  formatAMPM(date){
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
   }
 
   onChange(event) {
