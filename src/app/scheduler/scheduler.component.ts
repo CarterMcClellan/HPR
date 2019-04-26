@@ -78,13 +78,14 @@ export class SchedulerComponent implements OnInit {
   generateTimeseries(start_date, end_date, delta, interval) {
     var tiles = [];
     const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+    var startDay = new Date(start_date);
     var currentDay = new Date(start_date);
-    var currentHour = new Date("Sat Apr 20 2019 09:00:00 GMT-0700");
+    var currentHour = new Date("Sat Apr 20 2019 09:00:00 GMT-0700"); // could be any day with hours, minutes = 0
 
-    for(var j=0; j < 10; j+=interval){
-      for(var i=0; i < delta; i++){
+    for ( var j=0; j < 10; j+=interval) {
+      for ( var i=startDay.getDay(); i < delta + startDay.getDay(); i++) {
         tiles.push({cols: 1, rows: 1, text: days[i] + " , " + this.formatAMPM(currentHour) });
-        currentDay.setDate(currentDay.getDate() + 1);
+        currentDay.setDate(currentDay.getDay() + 1);
       }
       currentHour.setTime(currentHour.getTime() + (1/2*60*60*1000));
     }
@@ -115,11 +116,13 @@ export class SchedulerComponent implements OnInit {
 
   submit() {
     const all_days = [];
-
-    for(var i=0; i < this.interestFormGroup.value.interests.length; i++){
-      all_days.push(this.interestFormGroup.value.interests[i].text);
+    if (this.interestFormGroup.value.interests.length !== 0) {
+      for (var i=0; i < this.interestFormGroup.value.interests.length; i++) {
+        all_days.push(this.interestFormGroup.value.interests[i].text);
+      }
+      this.schedulerService.writeScheduleToDB(all_days, this.studyTitle, this.email);
+    } else {
+      console.log("Please choose at least one schedule");
     }
-
-    this.schedulerService.writeScheduleToDB(all_days, this.studyTitle, this.email);
   }
 }

@@ -20,6 +20,8 @@ export class StudiesListComponent implements OnInit {
   private userStatusSub: Subscription;
   userStatus = "";
   email = "";
+  start_time: string;
+  end_time: string;
 
   constructor(public studiesService: StudiesService, public userService: UsersService, private router: Router) {}
 
@@ -29,6 +31,7 @@ export class StudiesListComponent implements OnInit {
     this.postsSub = this.studiesService.getStudiesUpdateListener()
       .subscribe((studies: Studies[]) => {
         this.studies = studies;
+        this.studies = this.formatStudies(this.studies);
       });
   }
 
@@ -40,5 +43,20 @@ export class StudiesListComponent implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
+  }
+
+  formatStudies(studies){
+    for (const study of studies) {
+      study.start_time = this.toString(study.start_time);
+      study.end_time = this.toString(study.end_time);
+    }
+    return studies;
+  }
+
+  toString(date) {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var mS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+    const day = new Date(date);
+    return days[day.getDay()] + ", " + mS[day.getMonth()] + " " + day.getDate();
   }
 }

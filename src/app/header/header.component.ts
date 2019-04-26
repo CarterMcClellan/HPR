@@ -74,7 +74,7 @@ ngOnDestroy(){
 
 onLogout() {
   this.userService.logout();
-  this.router.navigate(['/login']);
+  this.router.navigate(['/studies']);
 }
 
 }
