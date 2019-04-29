@@ -168,10 +168,51 @@ app.post('/partStudies', (req, res, next) => {
 app.get('/partStudies', (req,res, next) => {
   PartStudies.find()
     .then(documents => {
+
       return res.status(200).json({
         message: 'Participant studies fetched succesfully from the backend',
         curr_studies: documents,
         past_studies: documents
+      });
+    });
+});
+
+app.post('/partStudiesPost', (req, res, next) => {
+  PartStudies.find()
+    .then(documents => {
+      var target_user = req.body.email;
+      // (bad) way to parse documents to find desired part studies\
+      // (good) way to format this would be some kind of nice mongo query
+
+      // alternate (good) way would be just to restructure picker component and write
+      // these as seperate fields, problem these is around how you want to store users
+      // on the backend
+
+      // an important assumption here that I believe is correct is that
+      // the order of the time slots in the dicts will be the same
+      // as the order of the titles in the dicts (this will be broken
+      // in the case that duplicate titles are allowed)
+
+
+      var ts_dict = {} // all of the times user enrolled in a given study
+      var title_dict = {} // the name of the given study
+      for (var i = 0; i < documents.length; i++) {
+        for (var j = 0; j < documents[i].participants.length; j++){
+          var email = documents[i].participants[j].split("|")[1];
+          var title = documents[i].title;
+          var time_slots = documents[i].participants[j].split("|")[2].split(",");
+
+          ts_dict[email] = time_slots;
+          title_dict[email] = title;
+        }
+      }
+
+      console.log(ts_dict);
+      // console.log(part_dict[target_user]);
+      return res.status(200).json({
+        message: 'Participant studies fetched succesfully from the backend',
+        slots : ts_dict[target_user],
+        titles: title_dict[target_user]
       });
     });
 });

@@ -65,6 +65,7 @@ export class PickerComponent implements OnInit {
       openings.push(val);
     }
     this.pickerService.writeStudyToDB(openings, this.studyTitle);
+    this.router.navigate(['/studies']);
   }
 
 }

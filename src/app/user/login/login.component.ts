@@ -12,6 +12,7 @@ export const enum PasswordCheckStrength {
   Ok,
   Strong,
 };
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

@@ -25,10 +25,16 @@ export class MyStudiesComponent implements OnInit {
   email: string;
   userStatus: string;
 
+  titles: string[] = [];
+  slots: string[] = [];
+
   private userStatusSub: Subscription;
   private currStudiesSub: Subscription;
   private pastStudiesSub: Subscription;
   private currPartStudiesSub: Subscription;
+
+  private currSlotsSub: Subscription;
+  private currTitlesSub: Subscription;
 
 
   constructor(public myStudiesService: MyStudiesService, public userService: UsersService, private router: Router) {}
@@ -42,7 +48,7 @@ export class MyStudiesComponent implements OnInit {
         this.userStatus = this.userService.getStatus();
       });
 
-    if(this.userStatus === 'researcher'){
+    if (this.userStatus === 'researcher'){
       this.myStudiesService.getPastStudies();
       this.pastStudiesSub = this.myStudiesService.getPastStudiesUpdateListener()
         .subscribe((past_study : MyStudies[]) => {
@@ -60,7 +66,17 @@ export class MyStudiesComponent implements OnInit {
       this.currPartStudiesSub = this.myStudiesService.getCurrPartStudiesUpdateListener()
         .subscribe((curr_part_study : PartStudies[]) => {
           this.curr_part_studies = curr_part_study;
-        })
+        });
+
+      this.myStudiesService.postPartStudies(this.email);
+      this.currSlotsSub = this.myStudiesService.getSlotsUpdateListener()
+        .subscribe((slots : string[]) => {
+          this.slots = slots;
+        });
+      this.currTitlesSub = this.myStudiesService.getTitlesUpdateListener()
+        .subscribe((titles : string[]) => {
+          this.titles = titles;
+        });
     }
 
   }

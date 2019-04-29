@@ -31,13 +31,11 @@
 <ng-container *ngIf="userStatus == 'participant'">
     <mat-toolbar class="page-title">My Studies</mat-toolbar>
     <ng-container *ngIf="curr_part_studies && email">
-        <div *ngFor="let study of curr_part_studies">
+        <div *ngFor="let slot of slots; let i = index">
           <mat-card class="alternate-theme">
             <mat-card class="study-item">
-                <mat-card-title> {{ study.title }}</mat-card-title>
-                <mat-divider></mat-divider>
-                <mat-divider></mat-divider>
-                <h4> Enrolled People </h4> <p>{{ study.participants}}</p>
+              {{ titles }} <!-- should be titles[i] but there is a duplication issue-->
+              {{ slots[i] }}
             </mat-card>
           </mat-card>
         </div>

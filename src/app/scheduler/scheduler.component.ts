@@ -121,6 +121,7 @@ export class SchedulerComponent implements OnInit {
         all_days.push(this.interestFormGroup.value.interests[i].text);
       }
       this.schedulerService.writeScheduleToDB(all_days, this.studyTitle, this.email);
+      this.router.navigate(['/studies']);
     } else {
       console.log("Please choose at least one schedule");
     }
