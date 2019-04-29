@@ -57,12 +57,11 @@ export class UsersService {
       });
   }
 
-    // this functionality is only relevant for the researcher view as they are the only class which is
+  // this functionality is only relevant for the researcher view as they are the only class which is
   // given the privelege to add participants to the study
   login(email, password, authentication) {
     const user_obj: User = { id: null , email: email, password: password, authentication: authentication};
     this.email = email;
-    console.log(user_obj);
     this.http.post<{token: string, status: string, email: string}>('http://localhost:3000/login', user_obj)
       .subscribe((responseData) => {
         const temp = responseData;
