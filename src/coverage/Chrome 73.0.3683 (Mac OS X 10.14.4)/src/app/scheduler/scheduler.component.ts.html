@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/app/scheduler/scheduler.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">src/app/scheduler/</a> scheduler.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">28.79% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>19/66</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">14.29% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">36.36% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">29.23% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>19/65</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { SchedulerService } from './scheulder.service';
+import { Studies } from '../studies/studies.model';
+import { UsersService } from '../user/user.service';
+&nbsp;
+export interface Tile {
+  cols: number;
+  rows: number;
+  text: string;
+}
+&nbsp;
+@Component({
+  selector: 'app-scheduler',
+  templateUrl: './scheduler.component.html',
+  styleUrls: ['./scheduler.component.css']
+})
+&nbsp;
+export class SchedulerComponent implements OnInit {
+  oneStudy: Studies;
+  timeSeries: Tile[];
+  studyTitle : string;
+  delta: number;<span class="fstat-no" title="function not covered" ></span>
+  email: str<span class="cstat-no" title="statement not covered" >ing;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+  start_number: number;<span class="cstat-no" title="statement not covered" ></span>
+  end_number: number;<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" ></span>
+  routeSub : Subscription;<span class="cstat-no" title="statement not covered" ></span>
+  interestFo<span class="cstat-no" title="statement not covered" >rmGroup : FormGroup;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private schedulerService: SchedulerService,<span class="fstat-no" title="function not covered" ></span>
+    public userService: User<span class="cstat-no" title="statement not covered" >sService) { }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+  ngOnInit() {<span class="cstat-no" title="statement not covered" ></span>
+    this.email = thi<span class="cstat-no" title="statement not covered" >s.userService.getEmail();</span>
+    // r<span class="cstat-no" title="statement not covered" >ecieve the title of the selected study</span>
+    this.rou<span class="cstat-no" title="statement not covered" >teSub = this.route.queryParams</span>
+    .subscribe(params =&gt; {
+      // Defaults to 0 if no query param provided.
+      this.s<span class="cstat-no" title="statement not covered" >tudyTitle = pa</span>rams['study'] || "";
+    });
+    this.schedulerService.getStudyFromDB(this.studyTitle)
+      .subscribe(oneStudy =&gt; {<span class="fstat-no" title="function not covered" ></span>
+        this.oneStud<span class="cstat-no" title="statement not covered" >y =</span> oneStudy.studies;
+        const start<span class="cstat-no" title="statement not covered" >_date = this.oneStudy.start_time;</span>
+        const end_date <span class="cstat-no" title="statement not covered" >= this.oneStudy.end_t</span>ime;
+        const delta = thi<span class="cstat-no" title="statement not covered" >s.calcDelta(start_dat</span>e, end_date);
+        this.delta = delta<span class="cstat-no" title="statement not covered" >;</span>
+<span class="cstat-no" title="statement not covered" >        const interval = .5;</span>
+        this<span class="cstat-no" title="statement not covered" >.timeSeries = this.generateTimeseries(start_date, end_date, delta, interval);</span>
+        this.int<span class="cstat-no" title="statement not covered" >erestFormGroup = this.formBuilder.group({</span>
+          intere<span class="cstat-no" title="statement not covered" >sts: this.formBuilder.array([])</span>
+        });
+      });<span class="cstat-no" title="statement not covered" ></span>
+  }
+<span class="cstat-no" title="statement not covered" ></span>
+  calcDelta(start_date, end_date) {
+    const as_date_start = new Date(start_date);<span class="fstat-no" title="function not covered" ></span>
+    const as_date_en<span class="cstat-no" title="statement not covered" >d = new Date(end</span>_date);
+<span class="cstat-no" title="statement not covered" ></span>
+    const diffTime <span class="cstat-no" title="statement not covered" >= Math.abs(as_date_end.get</span>Time() - as_date_start.getTime());
+    cons<span class="cstat-no" title="statement not covered" >t delta = Math.ceil(</span>diffTime / (1000 * 60 * 60 * 24));
+<span class="cstat-no" title="statement not covered" ></span>
+    if (<span class="cstat-no" title="statement not covered" >delta &lt; 0){</span>
+      console.log("dat<span class="cstat-no" title="statement not covered" >e overlap occurs at the end of the </span>month #TODO");
+    } el<span class="cstat-no" title="statement not covered" >se {</span>
+      return delta;
+    }<span class="fstat-no" title="function not covered" ></span>
+  }<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" ></span>
+  generateTi<span class="cstat-no" title="statement not covered" >meseries(start_date, end_date, delta, interval) {</span>
+    var tiles = [];
+    const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+    var startDay = n<span class="cstat-no" title="statement not covered" >ew Date(start_date);<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ></span></span></span>
+    var curr<span class="cstat-no" title="statement not covered" >entDay = new Date(start</span>_date);
+    var currentHour = new Date("Sat Apr 20 2019 09:00:00 GMT-0700"); // could be any day with hours, minutes = 0
+&nbsp;
+    for ( var j=0; j &lt; 10; j+=interval) {<span class="fstat-no" title="function not covered" ></span>
+      for ( var i=start<span class="cstat-no" title="statement not covered" >Day</span>.getDay(); i &lt; delta + startDay.getDay(); i++) {
+<span class="cstat-no" title="statement not covered" >        tiles.push({cols: 1, rows: 1, text: days[i] + " , " + this.formatAMPM(currentHour) });</span>
+        curr<span class="cstat-no" title="statement not covered" >entDay.setDate(currentDay.getDay() + 1);</span>
+      }<span class="cstat-no" title="statement not covered" ></span>
+      currentHour.setTime(currentHour.getTime() + (1/2*60*60*1000));
+    }<span class="cstat-no" title="statement not covered" ></span>
+    return t<span class="cstat-no" title="statement not covered" >iles;</span>
+  }
+&nbsp;
+  formatAMPM<span class="cstat-no" title="statement not covered" >(date){</span>
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours &gt;= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes &lt; 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+  }
+&nbsp;
+  onChange(event) {
+    const interests = &lt;FormArray&gt;this.interestFormGroup.get('interests') as FormArray;
+&nbsp;
+    if(event.checked) {
+      interests.push(new FormControl(event.source.value))
+    } else {
+      const i = interests.controls.findIndex(x =&gt; x.value === event.source.value);
+      interests.removeAt(i);
+    }
+  }
+&nbsp;
+  submit() {
+    const all_days = [];
+    if (this.interestFormGroup.value.interests.length !== 0) {
+      for (var i=0; i &lt; this.interestFormGroup.value.interests.length; i++) {
+        all_days.push(this.interestFormGroup.value.interests[i].text);
+      }
+      this.schedulerService.writeScheduleToDB(all_days, this.studyTitle, this.email);
+      this.router.navigate(['/studies']);
+    } else {
+      console.log("Please choose at least one schedule");
+    }
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Apr 29 2019 12:28:24 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
