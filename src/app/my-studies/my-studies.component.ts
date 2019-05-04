@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { MyStudies } from './my-studies.model';
 import { PartStudies } from '../picker/part-studies.model';
 import { MyStudiesService } from './my-studies.service';
+import { NgForm } from "@angular/forms";
+import { StudiesService } from "../studies/studies.service";
 
 import { UsersService } from '../user/user.service';
 
@@ -37,7 +39,7 @@ export class MyStudiesComponent implements OnInit {
   private currTitlesSub: Subscription;
 
 
-  constructor(public myStudiesService: MyStudiesService, public userService: UsersService, private router: Router) {}
+  constructor(public myStudiesService: MyStudiesService, public userService: UsersService, private router: Router, public studiesService: StudiesService) {}
 
   ngOnInit() {
     this.email = this.userService.getEmail();
@@ -49,17 +51,11 @@ export class MyStudiesComponent implements OnInit {
       });
 
     if (this.userStatus === 'researcher'){
-      this.myStudiesService.getPastStudies();
-      this.pastStudiesSub = this.myStudiesService.getPastStudiesUpdateListener()
-        .subscribe((past_study : MyStudies[]) => {
-          this.past_studies = past_study;
-          console.log(this.past_studies);
-        });
-
       this.myStudiesService.getCurrStudies();
       this.currStudiesSub = this.myStudiesService.getCurrStudiesUpdateListener()
         .subscribe((curr_study : MyStudies[]) => {
           this.curr_studies = curr_study;
+          this.curr_studies = this.formatStudies(this.curr_studies);
         });
     } else {
       this.myStudiesService.getPartStudies();
@@ -84,5 +80,31 @@ export class MyStudiesComponent implements OnInit {
   checkView(studyTitle) {
     this.userStatus = this.userService.getStatus();
     this.router.navigate(['/picker'], {queryParams: {study: studyTitle}});
+  }
+
+  onAddStudies(form: NgForm) {
+    console.log(form.value);
+    if (form.invalid) {
+      return;
+    }
+    // console.log(form.value);
+    // title: string, study: string, description: string, time: string
+    this.studiesService.addStudies(form.value.title, form.value.description, form.value.start_time, form.value.end_time);
+    form.resetForm();
+  }
+
+  formatStudies(studies){
+    for (const study of studies) {
+      study.start_time = this.toString(study.start_time);
+      study.end_time = this.toString(study.end_time);
+    }
+    return studies;
+  }
+
+  toString(date) {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var mS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+    const day = new Date(date);
+    return days[day.getDay()] + ", " + mS[day.getMonth()] + " " + day.getDate();
   }
 }

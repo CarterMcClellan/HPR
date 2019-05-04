@@ -1,6 +1,70 @@
 <ng-container *ngIf="userStatus=='researcher'">
     <mat-toolbar class="page-title">Post New Study</mat-toolbar>
-    <app-studies-create></app-studies-create>
+    <mat-card class="alternate-theme">
+      <mat-card class="create-study">
+        <form (submit)="onAddStudies(studyForm)" #studyForm="ngForm">
+          <mat-form-field  class= "name-textarea">
+            <input
+              matInput
+              type="text"
+              name="title"
+              ngModel
+              required
+              minlength="3"
+              placeholder="Study Title"
+              #title="ngModel">
+            <mat-error *ngIf="title.invalid">Please enter a study title.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field  class= "name-textarea">
+            <input
+              matInput
+              type="text"
+              name="description"
+              ngModel
+              required
+              minlength="3"
+              placeholder="Study Description"
+              #description="ngModel">
+            <mat-error *ngIf="description.invalid">Please enter a study descrition.</mat-error>
+          </mat-form-field>
+
+          <!-- Start Time-->
+          <mat-form-field  class= "date-textarea">
+            <input
+              matInput
+              ngModel
+              required
+              name="start_time"
+              #start_time="ngModel"
+              [matDatepicker]="start_picker"
+              placeholder="Study start time">
+            <mat-datepicker-toggle matSuffix [for]="start_picker"></mat-datepicker-toggle>
+            <mat-datepicker #start_picker></mat-datepicker>
+            <mat-error *ngIf="start_time.invalid"></mat-error>
+          </mat-form-field>
+
+          <!-- End Time-->
+          <mat-form-field class= "date-textarea">
+            <input
+              matInput
+              ngModel
+              required
+              name="end_time"
+              #end_time="ngModel"
+              [matDatepicker]="end_picker"
+              placeholder="Study end time">
+            <mat-datepicker-toggle matSuffix [for]="end_picker"></mat-datepicker-toggle>
+            <mat-datepicker #end_picker></mat-datepicker>
+            <mat-error *ngIf="end_time.invalid"></mat-error>
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit">Post Study</button>
+        </form>
+      </mat-card>
+    </mat-card>
 </ng-container>
 
 <ng-container *ngIf="userStatus == 'researcher'">

@@ -43,6 +43,7 @@ export class StudiesService {
   // given the privelege to add participants to the study
   addStudies(title: string, description: string, start_time: string, end_time: string) {
     const study_obj: Studies = { id: null , title: title , description: description, start_time: start_time, end_time: end_time, approval: null};
+    console.log(study_obj);
     this.http.post<{message: string}>('http://localhost:3000/studies', study_obj)
       .subscribe((responseData) => {
         console.log(responseData.message);
